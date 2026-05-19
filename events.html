@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Events — Alderney Week 2026</title>
-  <meta name="description" content="Explore all the events at Alderney Week 2026 — from the Cavalcade and Man Powered Flight to the Torchlight Procession and Fireworks, 1st–8th August 2026.">
+  <title>Events Programme — Alderney Week 2026</title>
+  <meta name="description" content="The full Alderney Week 2026 events programme — eight days of unforgettable island celebration, 1st–8th August 2026.">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* ── Filter bar ──────────────────────────────────────────────── */
     .filter-bar {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -16,7 +17,7 @@
       z-index: 100;
     }
     .filter-bar-inner {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
       display: flex;
       gap: 6px;
@@ -38,12 +39,14 @@
       white-space: nowrap;
       transition: all var(--transition);
     }
-    .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .filter-btn:hover  { border-color: var(--navy); color: var(--navy); }
     .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
+    /* ── Calendar section ────────────────────────────────────────── */
     .calendar-section { padding: 64px 24px; }
-    .calendar-inner { max-width: 1100px; margin: 0 auto; }
+    .calendar-inner   { max-width: 1100px; margin: 0 auto; }
 
+    /* ── Day blocks ──────────────────────────────────────────────── */
     .day-block { margin-bottom: 56px; }
     .day-block:last-child { margin-bottom: 0; }
 
@@ -54,36 +57,23 @@
       margin-bottom: 22px;
     }
     .day-circle {
-      width: 58px;
-      height: 58px;
+      width: 58px; height: 58px;
       background: var(--navy);
       border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .day-circle .dc-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-    }
-    .day-circle .dc-month {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-    }
-    .day-info h2 { font-size: 1.25rem; color: var(--navy); margin-bottom: 2px; }
-    .day-info p { font-size: 13px; color: var(--text-muted); }
-    .day-divider { flex: 1; height: 1px; background: var(--border); }
+    .dc-num   { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:900; color:var(--white); line-height:1; }
+    .dc-month { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--gold); }
 
-    .day-events { display: flex; flex-direction: column; gap: 14px; }
+    .day-info h2 { font-size:1.25rem; color:var(--navy); margin-bottom:2px; }
+    .day-info p  { font-size:13px; color:var(--text-muted); }
+    .day-divider { flex:1; height:1px; background:var(--border); }
 
+    .day-events { display:flex; flex-direction:column; gap:14px; }
+
+    /* ── Event rows ──────────────────────────────────────────────── */
     .event-row {
       background: var(--white);
       border: 1px solid var(--border);
@@ -98,14 +88,10 @@
     .event-row:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
 
     .event-row-icon {
-      width: 56px;
-      height: 56px;
+      width: 56px; height: 56px;
       border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; flex-shrink: 0;
     }
     .icon-bg-navy   { background: rgba(27,58,92,0.08); }
     .icon-bg-gold   { background: rgba(242,166,43,0.12); }
@@ -113,62 +99,312 @@
     .icon-bg-teal   { background: rgba(42,139,114,0.1); }
     .icon-bg-purple { background: rgba(130,80,200,0.1); }
 
-    .event-row-body h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 6px; }
-    .event-row-body p  { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 10px; }
-    .event-row-tags    { display: flex; gap: 6px; flex-wrap: wrap; }
+    .event-row-body h3 { font-size:1.1rem; color:var(--navy); margin-bottom:6px; }
+    .event-row-body p  { font-size:14px; color:var(--text-muted); line-height:1.65; margin-bottom:10px; }
+    .event-row-tags    { display:flex; gap:6px; flex-wrap:wrap; }
 
-    .event-row-meta { text-align: right; }
-    .event-row-meta .ev-time {
-      display: block;
+    .event-row-meta { text-align:right; }
+    .ev-time { display:block; font-size:13px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+    .ev-loc  { font-size:12px; color:var(--text-muted); }
+
+    .adults-row { background: var(--navy); border:none; }
+    .adults-row:hover { transform:translateX(4px); box-shadow:var(--shadow-lg); }
+    .adults-row .event-row-body h3 { color:var(--white); }
+    .adults-row .event-row-body p  { color:rgba(255,255,255,0.7); }
+    .adults-row .ev-time { color:var(--gold); }
+    .adults-row .ev-loc  { color:rgba(255,255,255,0.5); }
+
+    /* ── Practical section ───────────────────────────────────────── */
+    .practical-section { background:var(--white); padding:80px 24px; }
+    .practical-inner   { max-width:1100px; margin:0 auto; }
+    .practical-header  { text-align:center; margin-bottom:48px; }
+    .practical-cards   { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .practical-card    { background:var(--cream); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; }
+    .practical-card-icon { font-size:32px; display:block; margin-bottom:14px; }
+    .practical-card h3   { font-size:1.05rem; color:var(--navy); margin-bottom:10px; }
+    .practical-card p    { font-size:14px; color:var(--text-muted); line-height:1.7; }
+
+    /* ── Watermark strip (shown when unlocked) ───────────────────── */
+    .access-banner {
+      display: none;
+      background: #E8F5EE;
+      border-bottom: 1px solid #A8D8B8;
+      padding: 10px 24px;
+      text-align: center;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
+      color: #1E5C38;
+    }
+    .access-banner.visible { display: block; }
+
+    /* ── Paywall ─────────────────────────────────────────────────── */
+    #paywallSection {
+      padding: 64px 24px 80px;
+    }
+    .paywall-inner {
+      max-width: 540px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .paywall-lock {
+      width: 72px; height: 72px;
+      background: var(--gold-light);
+      border: 2px solid rgba(242,166,43,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+    }
+    .paywall-inner h2 { font-size:1.75rem; color:var(--navy); margin-bottom:12px; }
+    .paywall-inner > p { font-size:15px; color:var(--text-muted); line-height:1.7; margin-bottom:28px; }
+
+    .paywall-price {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .paywall-price .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
       color: var(--navy);
-      margin-bottom: 3px;
+      line-height: 1;
     }
-    .event-row-meta .ev-loc { font-size: 12px; color: var(--text-muted); }
-
-    .adults-row {
-      background: var(--navy);
-      border: none;
+    .paywall-price .price-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
-    .adults-row:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
-    .adults-row .event-row-body h3 { color: var(--white); }
-    .adults-row .event-row-body p  { color: rgba(255,255,255,0.7); }
-    .adults-row .event-row-meta .ev-time   { color: var(--gold); }
-    .adults-row .event-row-meta .ev-loc    { color: rgba(255,255,255,0.5); }
 
-    .practical-section { background: var(--white); padding: 80px 24px; }
-    .practical-inner { max-width: 1100px; margin: 0 auto; }
-    .practical-header { text-align: center; margin-bottom: 48px; }
-    .practical-cards {
+    .paywall-features {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 28px;
+      text-align: left;
     }
-    .practical-card {
+    .paywall-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 8px 10px;
       background: var(--cream);
+      border-radius: var(--radius-sm);
+    }
+    .paywall-feature .pf-check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+    #payBtn {
+      width: 100%;
+      justify-content: center;
+      font-size: 16px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+    }
+
+    #payBtn.loading {
+      opacity: 0.7;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .paywall-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .paywall-divider::before,
+    .paywall-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .already-paid-btn {
+      background: none;
+      border: none;
+      color: var(--navy);
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 0;
+      transition: color var(--transition);
+    }
+    .already-paid-btn:hover { color: var(--gold); }
+
+    /* Preview (blurred ghost cards) */
+    .paywall-preview {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+    }
+    .paywall-preview::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, var(--cream) 70%);
+      pointer-events: none;
+    }
+    .ghost-cards { display: flex; flex-direction: column; gap: 12px; }
+    .ghost-card {
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 28px;
+      padding: 22px 26px;
+      filter: blur(4px);
+      user-select: none;
+      pointer-events: none;
     }
-    .practical-card-icon { font-size: 32px; margin-bottom: 14px; display: block; }
-    .practical-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
-    .practical-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .ghost-line {
+      height: 14px;
+      border-radius: 7px;
+      background: var(--border);
+      margin-bottom: 10px;
+    }
+    .ghost-line.short { width: 40%; }
+    .ghost-line.medium { width: 65%; }
+    .ghost-line.long { width: 90%; }
 
+    /* ── Modal (re-access) ───────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      background: var(--cream);
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      transition: background var(--transition);
+    }
+    .modal-close:hover { background: var(--border); }
+
+    .modal h3 { font-size: 1.4rem; color: var(--navy); margin-bottom: 8px; }
+    .modal p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+
+    .modal-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color var(--transition);
+    }
+    .modal-input:focus { border-color: var(--navy); background: var(--white); }
+
+    .modal-submit {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .modal-status {
+      margin-top: 14px;
+      font-size: 14px;
+      text-align: center;
+      min-height: 20px;
+    }
+    .modal-status.success { color: #1E5C38; }
+    .modal-status.error   { color: var(--coral); }
+
+    /* ── Anti-copy on unlocked content ───────────────────────────── */
+    #calendarContent {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    /* ── Loading state ───────────────────────────────────────────── */
+    .content-loading {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .content-loading .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Print protection ────────────────────────────────────────── */
+    @media print {
+      #calendarContent,
+      .calendar-section { display: none !important; }
+      .print-block::after {
+        content: 'This content is protected. Please visit alderneyweek.com';
+        display: block;
+        padding: 40px;
+        text-align: center;
+        font-size: 18px;
+      }
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .event-row { grid-template-columns: 56px 1fr; }
       .event-row-meta { display: none; }
-      .practical-cards { grid-template-columns: repeat(2, 1fr); }
+      .practical-cards { grid-template-columns: repeat(2,1fr); }
+      .paywall-inner { padding: 36px 24px; }
     }
     @media (max-width: 600px) {
       .event-row { grid-template-columns: 1fr; padding: 18px; }
       .practical-cards { grid-template-columns: 1fr; }
       .day-divider { display: none; }
+      .paywall-features { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
@@ -204,10 +440,11 @@
 
   <div class="page-content">
 
+    <!-- Page hero -->
     <div class="page-hero">
       <div class="page-hero-tag">1st – 8th August 2026</div>
       <h1>Events Programme</h1>
-      <p>Eight days of unforgettable fun, entertainment and island spirit — something for everyone, and most events are completely free.</p>
+      <p>Eight days of unforgettable fun, entertainment and island spirit — the complete programme for Alderney Week 2026.</p>
       <div class="page-hero-wave">
         <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
           <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
@@ -215,377 +452,150 @@
       </div>
     </div>
 
-    <div class="filter-bar">
-      <div class="filter-bar-inner">
-        <button class="filter-btn active" data-filter="all">All Events</button>
-        <button class="filter-btn" data-filter="family">Family</button>
-        <button class="filter-btn" data-filter="free">Free</button>
-        <button class="filter-btn" data-filter="adults">Adults Only</button>
-        <button class="filter-btn" data-filter="daytime">Daytime</button>
-        <button class="filter-btn" data-filter="evening">Evening</button>
-      </div>
+    <!-- Access banner (shown when unlocked) -->
+    <div class="access-banner" id="accessBanner">
+      🔓 Programme unlocked · <span id="accessEmail"></span> · <button onclick="revokeAccess()" style="background:none;border:none;cursor:pointer;color:#1E5C38;font-weight:700;text-decoration:underline;font-family:inherit;font-size:inherit;">Not you?</button>
     </div>
 
-    <section class="calendar-section">
-      <div class="calendar-inner">
+    <!-- ════════════════════════════════════════════════════════
+         PAYWALL (shown when not unlocked)
+    ═════════════════════════════════════════════════════════ -->
+    <div id="paywallSection">
 
-        <!-- Day 1 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle">
-              <span class="dc-num">1</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Friday 1st August</h2>
-              <p>Opening day — the fun begins!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-teal">🛒</div>
-              <div class="event-row-body">
-                <h3>Street Market</h3>
-                <p>Kick off Alderney Week at the Street Market. Local vendors fill the streets with fresh produce, handmade crafts, island souvenirs, and delicious food. A wonderful way to soak up the Alderney atmosphere and chat with locals.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Daytime</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">All Day</span>
-                <span class="ev-loc">Victoria Street</span>
-              </div>
-            </div>
-            <div class="event-row adults-row" data-tags="adults evening">
-              <div class="event-row-icon icon-bg-purple" style="background:rgba(255,255,255,0.1)">🎶</div>
-              <div class="event-row-body">
-                <h3>Quarry Party — Night 1</h3>
-                <p>The legendary adults-only Quarry Party kicks off Alderney Week with a bang. Dance the night away in the unique setting of Alderney's historic quarry — a venue unlike any other.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-coral">18+ Only</span>
-                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Late Night</span>
-                <span class="ev-loc">The Quarry</span>
-              </div>
-            </div>
-          </div>
+      <!-- Paywall box -->
+      <div class="paywall-inner">
+        <div class="paywall-lock">🔒</div>
+        <h2>Unlock the Full Programme</h2>
+        <p>Get complete details for all 8 days of Alderney Week 2026 — every event, time, location, and description.</p>
+
+        <div class="paywall-price">
+          <span class="price">£3</span>
+          <span class="price-note">one-time · access forever</span>
         </div>
 
-        <!-- Day 2 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle" style="background:var(--gold)">
-              <span class="dc-num" style="color:var(--navy)">2</span>
-              <span class="dc-month" style="color:rgba(27,58,92,0.7)">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Saturday 2nd August</h2>
-              <p>Cavalcade Day — the highlight of the whole week!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-gold">🎠</div>
-              <div class="event-row-body">
-                <h3>The Cavalcade</h3>
-                <p>The undisputed highlight of Alderney Week! Beautifully decorated floats parade down Victoria Street to The Butes, with food vendors, games, and family entertainment all along the route. An unmissable community celebration packed with colour, music, and joy.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Daytime</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Afternoon</span>
-                <span class="ev-loc">Victoria St → The Butes</span>
-              </div>
-            </div>
-          </div>
+        <div class="paywall-features">
+          <div class="paywall-feature"><span class="pf-check">✓</span>Full event descriptions</div>
+          <div class="paywall-feature"><span class="pf-check">✓</span>Times &amp; locations</div>
+          <div class="paywall-feature"><span class="pf-check">✓</span>Day-by-day programme</div>
+          <div class="paywall-feature"><span class="pf-check">✓</span>Family &amp; adult events</div>
         </div>
 
-        <!-- Day 3 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle">
-              <span class="dc-num">3</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Sunday 3rd August</h2>
-              <p>Man Powered Flight — expect the unexpected!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-coral">✈️</div>
-              <div class="event-row-body">
-                <h3>Man Powered Flight</h3>
-                <p>Competitors launch their homemade flying machines from Douglas Quay in an attempt at powered flight. The results are always wonderfully chaotic — whether they soar or splash spectacularly into the harbour below, it's guaranteed entertainment for the whole family.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Daytime</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Afternoon</span>
-                <span class="ev-loc">Douglas Quay</span>
-              </div>
-            </div>
-            <div class="event-row adults-row" data-tags="adults evening">
-              <div class="event-row-icon" style="background:rgba(255,255,255,0.1);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px">🏚️</div>
-              <div class="event-row-body">
-                <h3>Bunker Party — Night 2</h3>
-                <p>Party in one of Alderney's extraordinary WWII bunkers — an utterly unique adults-only experience. History meets nightlife in the most memorable setting you'll ever encounter.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-coral">18+ Only</span>
-                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Late Night</span>
-                <span class="ev-loc">WWII Bunker</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button class="btn btn-primary btn-lg" id="payBtn" onclick="startCheckout()">
+          Pay £3 — Unlock Now
+        </button>
 
-        <!-- Day 4 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle">
-              <span class="dc-num">4</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Monday 4th August</h2>
-              <p>Water Splash — prepare to get soaked!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-gold">💦</div>
-              <div class="event-row-body">
-                <h3>Water Splash</h3>
-                <p>The kids' absolute favourite! Children armed with water guns join forces — and take on — the island's fire brigade in the wettest, wildest afternoon of the week. No winners, no losers, just pure joyful chaos. Bring a change of clothes!</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-navy">Kids' Favourite</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Daytime</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Afternoon</span>
-                <span class="ev-loc">Town Centre</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="paywall-divider">or</div>
 
-        <!-- Day 5 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle">
-              <span class="dc-num">5</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Tuesday 5th August</h2>
-              <p>Scavenger Hunt — explore every corner of the island!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-teal">🗺️</div>
-              <div class="event-row-body">
-                <h3>Scavenger Hunt</h3>
-                <p>Teams race around the island tracking down hidden clues and completing a list of challenges. A brilliant way to explore Alderney's beautiful coastlines, historic sites, and hidden corners — while competing to be the first team back with a completed list.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Daytime</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">All Day</span>
-                <span class="ev-loc">Island-wide</span>
-              </div>
-            </div>
-            <div class="event-row adults-row" data-tags="adults evening">
-              <div class="event-row-icon" style="background:rgba(255,255,255,0.1);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px">🎶</div>
-              <div class="event-row-body">
-                <h3>Quarry Party — Night 3</h3>
-                <p>The Quarry Party returns for another unforgettable night of great music and dancing in this spectacular one-of-a-kind venue. Adults only — a true Alderney Week institution.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-coral">18+ Only</span>
-                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Late Night</span>
-                <span class="ev-loc">The Quarry</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Day 6 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle">
-              <span class="dc-num">6</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Wednesday 6th August</h2>
-              <p>Mid-week fun continues</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-navy">🏆</div>
-              <div class="event-row-body">
-                <h3>Sports &amp; Community Activities</h3>
-                <p>A packed programme of sports competitions, fun games, and community activities spread throughout the day. Full schedule to be confirmed — contact the team or watch our social channels for the latest updates.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Daytime</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">All Day</span>
-                <span class="ev-loc">Various Venues</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Day 7 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle">
-              <span class="dc-num">7</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Thursday 7th August</h2>
-              <p>Sandcastle Competition — to the beach!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free daytime">
-              <div class="event-row-icon icon-bg-coral">🏖️</div>
-              <div class="event-row-body">
-                <h3>Sandcastle Competition</h3>
-                <p>Head to Alderney's beautiful sandy beaches and build the most spectacular sandcastle you can! Prizes are awarded across age categories, so everyone has a chance. Pack your buckets, spades, and imagination — engineering talent and wild creativity both welcome!</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Morning</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Morning</span>
-                <span class="ev-loc">Alderney Beaches</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Day 8 -->
-        <div class="day-block">
-          <div class="day-header">
-            <div class="day-circle" style="background:var(--coral)">
-              <span class="dc-num">8</span>
-              <span class="dc-month">Aug</span>
-            </div>
-            <div class="day-info">
-              <h2>Saturday 8th August</h2>
-              <p>Grand Finale — Torchlight Procession &amp; Fireworks!</p>
-            </div>
-            <div class="day-divider"></div>
-          </div>
-          <div class="day-events">
-            <div class="event-row" data-tags="family free evening">
-              <div class="event-row-icon icon-bg-navy">🔥</div>
-              <div class="event-row-body">
-                <h3>Torchlight Procession, Bonfire &amp; Fireworks</h3>
-                <p>The magical grand finale of Alderney Week. Residents light their torches and walk together through the town streets, gathering at The Butes to light a great communal bonfire. An ancient tradition connecting us to over a thousand years of island history — truly moving and spectacular. The evening concludes with a breathtaking fireworks display lighting up the Alderney sky.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-green">All Ages</span>
-                  <span class="badge badge-gold">Free</span>
-                  <span class="badge badge-navy">Evening</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Evening</span>
-                <span class="ev-loc">Town → The Butes</span>
-              </div>
-            </div>
-            <div class="event-row adults-row" data-tags="adults evening">
-              <div class="event-row-icon" style="background:rgba(255,255,255,0.1);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px">🎉</div>
-              <div class="event-row-body">
-                <h3>Quarry Party — Grand Finale Night</h3>
-                <p>End Alderney Week on the very highest note with the final Quarry Party. The biggest and best night of them all — dance, celebrate, and say a fond farewell to another incredible Alderney Week.</p>
-                <div class="event-row-tags">
-                  <span class="badge badge-coral">18+ Only</span>
-                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
-                </div>
-              </div>
-              <div class="event-row-meta">
-                <span class="ev-time">Late Night</span>
-                <span class="ev-loc">The Quarry</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <button class="already-paid-btn" onclick="openReaccessModal()">
+          Already paid? Get your access link →
+        </button>
       </div>
-    </section>
 
-    <!-- Practical -->
-    <section class="practical-section">
-      <div class="practical-inner">
-        <div class="practical-header">
-          <span class="section-tag">Good to Know</span>
-          <h2 class="section-title">Practical Information</h2>
-          <p class="section-subtitle">Everything you need to enjoy Alderney Week to the fullest.</p>
-        </div>
-        <div class="practical-cards">
-          <div class="practical-card">
-            <span class="practical-card-icon">🎟️</span>
-            <h3>Cost &amp; Tickets</h3>
-            <p>The vast majority of events are completely free — just turn up and enjoy! Some special activities may require a ticket. Check with the organisers for the latest details closer to the event.</p>
+      <!-- Ghost preview cards (blurred) -->
+      <div class="paywall-preview">
+        <div class="ghost-cards">
+          <div class="ghost-card">
+            <div class="ghost-line short"></div>
+            <div class="ghost-line long"></div>
+            <div class="ghost-line medium"></div>
           </div>
-          <div class="practical-card">
-            <span class="practical-card-icon">👨‍👩‍👧‍👦</span>
-            <h3>Family Friendly</h3>
-            <p>Alderney Week is a family celebration at heart. The adults-only Quarry &amp; Bunker Parties are clearly marked — everything else is suitable for children of all ages.</p>
+          <div class="ghost-card">
+            <div class="ghost-line short"></div>
+            <div class="ghost-line long"></div>
+            <div class="ghost-line medium"></div>
           </div>
-          <div class="practical-card">
-            <span class="practical-card-icon">📍</span>
-            <h3>Getting Around</h3>
-            <p>Alderney is a small island — most venues are within easy walking distance of town. Enjoy exploring on foot and discovering everything the island has to offer.</p>
+          <div class="ghost-card">
+            <div class="ghost-line short"></div>
+            <div class="ghost-line long"></div>
+            <div class="ghost-line medium"></div>
           </div>
         </div>
       </div>
-    </section>
+
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+         UNLOCKED CONTENT (hidden until paid)
+    ═════════════════════════════════════════════════════════ -->
+    <div id="unlockedSection" style="display:none">
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div class="filter-bar-inner">
+          <button class="filter-btn active" data-filter="all">All Events</button>
+          <button class="filter-btn" data-filter="family">Family</button>
+          <button class="filter-btn" data-filter="free">Free</button>
+          <button class="filter-btn" data-filter="adults">Adults Only</button>
+          <button class="filter-btn" data-filter="daytime">Daytime</button>
+          <button class="filter-btn" data-filter="evening">Evening</button>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <section class="calendar-section print-block">
+        <div class="calendar-inner" id="calendarContent">
+          <!-- Injected by JS after token verification -->
+          <div class="content-loading">
+            <div class="spinner"></div>
+            Loading your programme…
+          </div>
+        </div>
+      </section>
+
+      <!-- Practical info -->
+      <section class="practical-section">
+        <div class="practical-inner">
+          <div class="practical-header">
+            <span class="section-tag">Good to Know</span>
+            <h2 class="section-title">Practical Information</h2>
+            <p class="section-subtitle">Everything you need to enjoy Alderney Week to the fullest.</p>
+          </div>
+          <div class="practical-cards">
+            <div class="practical-card">
+              <span class="practical-card-icon">🎟️</span>
+              <h3>Cost &amp; Tickets</h3>
+              <p>The vast majority of events are completely free — just turn up and enjoy! Some special activities may require a ticket. Check with the organisers for the latest details.</p>
+            </div>
+            <div class="practical-card">
+              <span class="practical-card-icon">👨‍👩‍👧‍👦</span>
+              <h3>Family Friendly</h3>
+              <p>Alderney Week is a family celebration at heart. The adults-only Quarry &amp; Bunker Parties are clearly marked — everything else is suitable for children of all ages.</p>
+            </div>
+            <div class="practical-card">
+              <span class="practical-card-icon">📍</span>
+              <h3>Getting Around</h3>
+              <p>Alderney is a small island — most venues are within easy walking distance of town. Enjoy exploring on foot and discovering everything the island has to offer.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
 
   </div>
 
+  <!-- Re-access modal -->
+  <div class="modal-overlay" id="reaccessModal" role="dialog" aria-modal="true" aria-label="Access your programme">
+    <div class="modal">
+      <button class="modal-close" onclick="closeReaccessModal()" aria-label="Close">✕</button>
+      <h3>Get Your Access Link</h3>
+      <p>Enter the email address you used to pay and we'll send you a personal access link straight away.</p>
+      <input
+        type="email"
+        id="reaccessEmail"
+        class="modal-input"
+        placeholder="your@email.com"
+        autocomplete="email"
+        onkeydown="if(event.key==='Enter') submitReaccess()"
+      >
+      <button class="btn btn-navy modal-submit" id="reaccessBtn" onclick="submitReaccess()">
+        Send Access Link
+      </button>
+      <div class="modal-status" id="reaccessStatus"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -635,6 +645,7 @@
   </footer>
 
   <script>
+    // ── Nav ──────────────────────────────────────────────────────────
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
     const navToggle = document.getElementById('navToggle');
@@ -644,19 +655,232 @@
       navToggle.classList.toggle('open', open);
     });
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const eventRows  = document.querySelectorAll('[data-tags]');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        eventRows.forEach(row => {
-          const tags = row.dataset.tags || '';
-          row.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
+    // ── Token helpers ────────────────────────────────────────────────
+    const TOKEN_KEY = 'aw_programme_token';
+    const EMAIL_KEY = 'aw_programme_email';
+
+    function getStoredToken() { return localStorage.getItem(TOKEN_KEY); }
+    function getStoredEmail() { return localStorage.getItem(EMAIL_KEY); }
+
+    function storeAccess(token, email) {
+      localStorage.setItem(TOKEN_KEY, token);
+      localStorage.setItem(EMAIL_KEY, email);
+    }
+
+    function clearAccess() {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(EMAIL_KEY);
+    }
+
+    // Lightweight JWT expiry check (no signature check — that happens server-side)
+    function isTokenExpired(token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+        return payload.exp * 1000 < Date.now();
+      } catch { return true; }
+    }
+
+    // ── Show / hide paywall ──────────────────────────────────────────
+    function showPaywall() {
+      document.getElementById('paywallSection').style.display   = '';
+      document.getElementById('unlockedSection').style.display  = 'none';
+      document.getElementById('accessBanner').classList.remove('visible');
+    }
+
+    async function showUnlocked(token, email) {
+      document.getElementById('paywallSection').style.display   = 'none';
+      document.getElementById('unlockedSection').style.display  = '';
+      document.getElementById('accessBanner').classList.add('visible');
+      document.getElementById('accessEmail').textContent = email;
+
+      // Fetch events content from protected endpoint
+      await loadEventsContent(token);
+
+      // Wire up filter buttons
+      setupFilters();
+
+      // Disable right-click on events content
+      document.getElementById('calendarContent').addEventListener('contextmenu', (e) => e.preventDefault());
+    }
+
+    // ── Load protected events content ────────────────────────────────
+    async function loadEventsContent(token) {
+      const container = document.getElementById('calendarContent');
+      try {
+        const res = await fetch('/.netlify/functions/get-events', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+
+        if (!res.ok) {
+          // Token rejected server-side — clear it and show paywall
+          clearAccess();
+          showPaywall();
+          return;
+        }
+
+        const data = await res.json();
+        container.innerHTML = data.html;
+      } catch (err) {
+        container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px">Could not load the programme. Please check your connection and refresh the page.</p>';
+        console.error('Load events error:', err);
+      }
+    }
+
+    // ── Filter functionality ─────────────────────────────────────────
+    function setupFilters() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('[data-tags]').forEach(row => {
+            const tags = row.dataset.tags || '';
+            row.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
+          });
         });
       });
+    }
+
+    // ── Pay button ───────────────────────────────────────────────────
+    async function startCheckout() {
+      const btn = document.getElementById('payBtn');
+      btn.classList.add('loading');
+      btn.textContent = 'Redirecting to payment…';
+
+      try {
+        const res  = await fetch('/.netlify/functions/create-checkout', { method: 'POST' });
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert('Could not start checkout. Please try again or contact info@alderneyweek.com');
+          btn.classList.remove('loading');
+          btn.textContent = 'Pay £3 — Unlock Now';
+        }
+      } catch (err) {
+        alert('Connection error. Please check your internet and try again.');
+        btn.classList.remove('loading');
+        btn.textContent = 'Pay £3 — Unlock Now';
+      }
+    }
+
+    // ── Re-access modal ──────────────────────────────────────────────
+    function openReaccessModal() {
+      document.getElementById('reaccessModal').classList.add('open');
+      setTimeout(() => document.getElementById('reaccessEmail').focus(), 100);
+    }
+
+    function closeReaccessModal() {
+      document.getElementById('reaccessModal').classList.remove('open');
+      document.getElementById('reaccessStatus').textContent = '';
+      document.getElementById('reaccessEmail').value = '';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('reaccessModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeReaccessModal();
     });
+
+    async function submitReaccess() {
+      const email  = document.getElementById('reaccessEmail').value.trim();
+      const btn    = document.getElementById('reaccessBtn');
+      const status = document.getElementById('reaccessStatus');
+
+      if (!email || !email.includes('@')) {
+        status.textContent = 'Please enter a valid email address.';
+        status.className   = 'modal-status error';
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = 'Sending…';
+      status.textContent = '';
+
+      try {
+        const res  = await fetch('/.netlify/functions/request-reaccess', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ email }),
+        });
+        const data = await res.json();
+        status.textContent = data.message || data.error;
+        status.className   = res.ok ? 'modal-status success' : 'modal-status error';
+      } catch {
+        status.textContent = 'Connection error. Please try again.';
+        status.className   = 'modal-status error';
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = 'Send Access Link';
+      }
+    }
+
+    // ── Revoke (Not you?) ────────────────────────────────────────────
+    function revokeAccess() {
+      clearAccess();
+      showPaywall();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Bootstrap: check URL params then localStorage ────────────────
+    (async function init() {
+      const params    = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      const urlToken  = params.get('token');
+      const cancelled = params.get('cancelled');
+
+      // Clean URL without reloading
+      if (sessionId || urlToken || cancelled) {
+        const cleanUrl = window.location.pathname;
+        window.history.replaceState({}, '', cleanUrl);
+      }
+
+      if (cancelled) {
+        showPaywall();
+        return;
+      }
+
+      // Fresh payment return
+      if (sessionId) {
+        try {
+          const res  = await fetch('/.netlify/functions/verify-session', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ sessionId }),
+          });
+          const data = await res.json();
+          if (res.ok && data.token && data.email) {
+            storeAccess(data.token, data.email);
+            await showUnlocked(data.token, data.email);
+            return;
+          }
+        } catch { /* fall through to paywall */ }
+        showPaywall();
+        return;
+      }
+
+      // Token from email link
+      if (urlToken) {
+        if (!isTokenExpired(urlToken)) {
+          const payload = JSON.parse(atob(urlToken.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+          storeAccess(urlToken, payload.email || '');
+          await showUnlocked(urlToken, payload.email || '');
+          return;
+        }
+        // Expired token in URL — fall through
+      }
+
+      // Stored token
+      const storedToken = getStoredToken();
+      const storedEmail = getStoredEmail();
+      if (storedToken && !isTokenExpired(storedToken)) {
+        await showUnlocked(storedToken, storedEmail || '');
+        return;
+      }
+
+      // No valid access — show paywall
+      showPaywall();
+    })();
   </script>
 </body>
 </html>

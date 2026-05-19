@@ -1,0 +1,10 @@
+{
+  "name": "alderney-week",
+  "version": "1.0.0",
+  "description": "Alderney Week 2026 website",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "resend": "^3.2.0",
+    "stripe": "^14.21.0"
+  }
+}
