@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Alderney Week 2026</title>
+  <meta name="description" content="Get in touch with the Alderney Week team — we'd love to hear from you. Contact us about events, sponsorship, volunteering, or anything else.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Contact layout */
+    .contact-section { padding: 80px 24px; }
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 5fr 4fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Form */
+    .contact-form-wrap h2 { font-size: 1.8rem; color: var(--navy); margin-bottom: 8px; }
+    .contact-form-wrap > p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 32px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-control:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(27,58,92,0.08);
+    }
+    .form-control::placeholder { color: var(--text-muted); }
+    textarea.form-control { resize: vertical; min-height: 140px; }
+
+    .form-select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      cursor: pointer;
+      transition: border-color var(--transition);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-select:focus { border-color: var(--navy); }
+
+    .form-submit { margin-top: 8px; }
+
+    .form-success {
+      display: none;
+      background: #E8F5EE;
+      border: 1.5px solid #A8D8B8;
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      color: #1E5C38;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 16px;
+    }
+
+    /* Contact info sidebar */
+    .contact-info { }
+
+    .contact-info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+    .contact-info-card h3 {
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .contact-info-card h3 .ci-icon { font-size: 20px; }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-detail-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .contact-detail-item .cd-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .contact-detail-item .cd-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .contact-detail-item .cd-text a {
+      color: var(--navy);
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+    .contact-detail-item .cd-text a:hover { color: var(--gold); }
+
+    .gallery-card {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+    }
+    .gallery-card .gc-icon { font-size: 36px; display: block; margin-bottom: 14px; }
+    .gallery-card h3 { color: var(--white); font-size: 1.1rem; margin-bottom: 8px; }
+    .gallery-card p  { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+
+    /* FAQ section */
+    .faq-section { background: var(--white); padding: 80px 24px; }
+    .faq-inner { max-width: 840px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 18px 20px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background var(--transition);
+    }
+    .faq-question:hover { background: rgba(27,58,92,0.04); }
+    .faq-arrow {
+      width: 24px;
+      height: 24px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+      transition: transform var(--transition);
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+    }
+    .faq-answer-inner {
+      padding: 0 20px 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">We'd Love to Hear From You</div>
+      <h1>Get In Touch</h1>
+      <p>Questions about events? Interested in volunteering or sponsoring? Or just want to share your excitement about Alderney Week? Drop us a message.</p>
+      <div class="page-hero-wave">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Contact section -->
+    <section class="contact-section">
+      <div class="contact-inner">
+
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <h2>Send Us a Message</h2>
+          <p>Fill in the form below and we'll get back to you as soon as we can. Your feedback is always welcome and valued.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name *</label>
+                <input type="text" id="fname" name="fname" class="form-control" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name *</label>
+                <input type="text" id="lname" name="lname" class="form-control" placeholder="Your last name" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" class="form-select" required>
+                <option value="" disabled selected>What's your message about?</option>
+                <option value="general">General Enquiry</option>
+                <option value="events">Events &amp; Programme</option>
+                <option value="volunteer">Volunteering</option>
+                <option value="sponsorship">Sponsorship</option>
+                <option value="donate">Donations</option>
+                <option value="media">Media Enquiry</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" class="form-control" placeholder="Tell us what's on your mind..." required></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-navy btn-lg" style="width:100%;justify-content:center">Send Message →</button>
+            </div>
+
+            <div class="form-success" id="formSuccess">
+              ✓ Thank you for your message! We'll be in touch soon.
+            </div>
+          </form>
+        </div>
+
+        <!-- Info sidebar -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <h3><span class="ci-icon">📬</span>Contact Details</h3>
+            <div class="contact-detail">
+              <div class="contact-detail-item">
+                <span class="cd-icon">✉️</span>
+                <div class="cd-text">
+                  <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a>
+                </div>
+              </div>
+              <div class="contact-detail-item">
+                <span class="cd-icon">📮</span>
+                <div class="cd-text">
+                  PO Box 1138<br>
+                  Alderney<br>
+                  Channel Islands
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <h3><span class="ci-icon">🗓️</span>Event Dates</h3>
+            <div class="contact-detail">
+              <div class="contact-detail-item">
+                <span class="cd-icon">📅</span>
+                <div class="cd-text">
+                  <strong style="color:var(--navy)">Alderney Week 2026</strong><br>
+                  1st – 8th August 2026<br>
+                  Alderney, Channel Islands
+                </div>
+              </div>
+              <div class="contact-detail-item">
+                <span class="cd-icon">⭐</span>
+                <div class="cd-text">
+                  Theme: <strong style="color:var(--navy)">Under The Spotlight</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <h3><span class="ci-icon">⏰</span>Response Times</h3>
+            <div class="contact-detail">
+              <div class="contact-detail-item">
+                <span class="cd-icon">💬</span>
+                <div class="cd-text">We aim to respond to all enquiries within 2–3 working days. During the festival itself (1–8 August), response times may be a little longer as the team is busy on the ground.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-card">
+            <span class="gc-icon">📷</span>
+            <h3>See Past Alderney Weeks</h3>
+            <p>Browse hundreds of photos from previous years — from the cavalcade to the fireworks and everything in between.</p>
+            <a href="https://www.flickr.com" target="_blank" rel="noopener" class="btn btn-primary btn-sm">View Flickr Gallery</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="faq-inner">
+        <div class="faq-header">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Answers to the most common questions about Alderney Week.</p>
+        </div>
+
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do I get to Alderney?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Alderney is easy to reach! Aurigny Airlines operates regular flights from several UK airports and from Guernsey. You can also travel by ferry from Guernsey, or arrive by private vessel at Braye Harbour. We'd recommend booking accommodation and transport well in advance, especially during Alderney Week when the island is busier than usual.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Where can I stay during Alderney Week?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Alderney has a range of accommodation options to suit all budgets — from hotels and B&Bs to self-catering holiday rentals and camping. We strongly recommend booking as early as possible, as accommodation fills up quickly during Alderney Week. Contact the Alderney Tourism team for a full list of available accommodation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Are the events really free?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Yes! The vast majority of Alderney Week events are completely free — just turn up and enjoy. Some special activities or ticketed events may apply. The adults-only Quarry and Bunker Parties are separate ticketed events. We'll share full pricing details as the programme is confirmed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I bring my children?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Absolutely — Alderney Week is a family celebration at heart! Events like the Cavalcade, Water Splash, Sandcastle Competition, Man Powered Flight, and Scavenger Hunt are all designed to be enjoyed by children of all ages. The adults-only Quarry and Bunker Parties are clearly marked and not suitable for under-18s.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How can I get involved as a volunteer?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>We'd love to have you! Alderney Week is entirely volunteer-run, and we always welcome enthusiastic people to join the team. Whether you can help with stewarding, logistics, event setup, or any other role, please get in touch via the contact form above or email us at info@alderneyweek.com.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How can my business become a sponsor?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>We have a range of sponsorship packages available to suit businesses of all sizes, from Bronze through to Gold. Sponsoring Alderney Week is a fantastic way to support the island community and get your brand in front of a wonderful audience. Visit our <a href="sponsors.html" style="color:var(--navy);font-weight:700">Sponsors page</a> for full details, or contact us directly to discuss a bespoke arrangement.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Where can I see photos from previous years?
+              <span class="faq-arrow">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>You can find a wonderful collection of photos from previous Alderney Weeks on our Flickr gallery — the link is available throughout this website. It's a fantastic way to get a taste of what to expect and relive past celebrations.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="Flickr Gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Form handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fname   = document.getElementById('fname').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value.trim();
+
+      if (!fname || !email || !subject || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const mailtoLink = `mailto:info@alderneyweek.com?subject=${encodeURIComponent('Alderney Week Enquiry: ' + subject)}&body=${encodeURIComponent('Name: ' + fname + ' ' + document.getElementById('lname').value + '\nEmail: ' + email + '\n\n' + message)}`;
+      window.location.href = mailtoLink;
+
+      document.getElementById('formSuccess').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

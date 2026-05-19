@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sponsors — Alderney Week 2026</title>
+  <meta name="description" content="Alderney Week 2026 is grateful to the generous businesses and individuals who sponsor the island's most-loved summer festival.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Sponsor tiers */
+    .sponsors-section { padding: 80px 24px; }
+    .sponsors-inner { max-width: 1100px; margin: 0 auto; }
+    .sponsors-header { text-align: center; margin-bottom: 64px; }
+
+    .sponsor-tier { margin-bottom: 64px; }
+    .sponsor-tier:last-child { margin-bottom: 0; }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .tier-gold    { background: var(--gold-light); color: #7A5500; border: 1.5px solid rgba(242,166,43,0.4); }
+    .tier-silver  { background: rgba(180,180,200,0.12); color: #4A4A6A; border: 1.5px solid rgba(180,180,200,0.4); }
+    .tier-bronze  { background: rgba(180,120,80,0.1); color: #7A4A20; border: 1.5px solid rgba(180,120,80,0.3); }
+    .tier-friends { background: rgba(27,58,92,0.06); color: var(--navy); border: 1.5px solid var(--border); }
+
+    .tier-divider { flex: 1; height: 1px; background: var(--border); }
+    .tier-description { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+
+    /* Sponsor cards - gold tier (large) */
+    .sponsor-grid-gold {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .sponsor-card-gold {
+      background: var(--white);
+      border: 2px solid rgba(242,166,43,0.3);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: box-shadow var(--transition);
+    }
+    .sponsor-card-gold:hover { box-shadow: var(--shadow-md); }
+    .sponsor-logo-placeholder {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      background: var(--gold-light);
+      border: 1.5px dashed rgba(242,166,43,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .sponsor-card-gold .sp-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .sponsor-card-gold .sp-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* Silver/bronze tier (medium grid) */
+    .sponsor-grid-silver {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .sponsor-card-silver {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: center;
+      transition: box-shadow var(--transition);
+    }
+    .sponsor-card-silver:hover { box-shadow: var(--shadow-sm); }
+    .sponsor-logo-sm {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      background: var(--cream);
+      border: 1.5px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin: 0 auto 12px;
+    }
+    .sponsor-card-silver .sp-name { font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
+    .sponsor-card-silver .sp-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* Friends grid (small) */
+    .sponsor-grid-friends {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .sponsor-card-friend {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      transition: background var(--transition);
+    }
+    .sponsor-card-friend:hover { background: var(--gold-light); }
+
+    /* Become a sponsor */
+    .become-section { background: var(--white); padding: 80px 24px; }
+    .become-inner { max-width: 1100px; margin: 0 auto; }
+    .become-header { text-align: center; margin-bottom: 48px; }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .package-card {
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 1.5px solid var(--border);
+      background: var(--cream);
+    }
+    .package-card.featured {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .package-name {
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .package-card.featured .package-name { color: var(--white); }
+    .package-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .package-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .package-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .package-feature .check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+    .package-feature .feat-text { color: var(--text-muted); line-height: 1.4; }
+    .package-card.featured .feat-text { color: rgba(255,255,255,0.75); }
+
+    .sponsor-contact {
+      background: var(--gold-light);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      text-align: center;
+    }
+    .sponsor-contact h3 { font-size: 1.4rem; color: var(--navy); margin-bottom: 10px; }
+    .sponsor-contact p  { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+
+    @media (max-width: 900px) {
+      .sponsor-grid-gold    { grid-template-columns: 1fr; }
+      .sponsor-grid-silver  { grid-template-columns: repeat(2, 1fr); }
+      .sponsor-grid-friends { grid-template-columns: repeat(3, 1fr); }
+      .packages-grid        { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .sponsor-grid-silver  { grid-template-columns: 1fr; }
+      .sponsor-grid-friends { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html" class="active">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">Thank You</div>
+      <h1>Our Sponsors</h1>
+      <p>Alderney Week exists because of the incredible generosity of local businesses and individuals who believe in celebrating island life together.</p>
+      <div class="page-hero-wave">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Sponsors listing -->
+    <section class="sponsors-section">
+      <div class="sponsors-inner">
+        <div class="sponsors-header">
+          <span class="section-tag">2026 Sponsors</span>
+          <h2 class="section-title">With Thanks To Our Supporters</h2>
+          <p class="section-subtitle">These generous sponsors help keep Alderney Week free and fantastic for the whole community. Thank you.</p>
+        </div>
+
+        <!-- Gold -->
+        <div class="sponsor-tier">
+          <div class="tier-header">
+            <span class="tier-badge tier-gold">★ Gold Sponsors</span>
+            <div class="tier-divider"></div>
+          </div>
+          <p class="tier-description">Our headline sponsors whose support makes the biggest events of the week possible.</p>
+          <div class="sponsor-grid-gold">
+            <div class="sponsor-card-gold">
+              <div class="sponsor-logo-placeholder">🏢</div>
+              <div>
+                <p class="sp-name">Your Business Here</p>
+                <p class="sp-desc">Become a Gold Sponsor and put your business at the heart of Alderney Week 2026. Contact us to find out more about our sponsorship packages.</p>
+              </div>
+            </div>
+            <div class="sponsor-card-gold">
+              <div class="sponsor-logo-placeholder">🏢</div>
+              <div>
+                <p class="sp-name">Your Business Here</p>
+                <p class="sp-desc">As a Gold Sponsor, your brand will be featured prominently across all Alderney Week materials, on-site, and online throughout the festival.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Silver -->
+        <div class="sponsor-tier">
+          <div class="tier-header">
+            <span class="tier-badge tier-silver">◆ Silver Sponsors</span>
+            <div class="tier-divider"></div>
+          </div>
+          <p class="tier-description">Silver sponsors whose support helps fund key events and activities throughout the week.</p>
+          <div class="sponsor-grid-silver">
+            <div class="sponsor-card-silver">
+              <div class="sponsor-logo-sm">🏪</div>
+              <p class="sp-name">Your Business Here</p>
+              <p class="sp-desc">Silver Sponsor for Alderney Week 2026</p>
+            </div>
+            <div class="sponsor-card-silver">
+              <div class="sponsor-logo-sm">🏪</div>
+              <p class="sp-name">Your Business Here</p>
+              <p class="sp-desc">Silver Sponsor for Alderney Week 2026</p>
+            </div>
+            <div class="sponsor-card-silver">
+              <div class="sponsor-logo-sm">🏪</div>
+              <p class="sp-name">Your Business Here</p>
+              <p class="sp-desc">Silver Sponsor for Alderney Week 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bronze -->
+        <div class="sponsor-tier">
+          <div class="tier-header">
+            <span class="tier-badge tier-bronze">● Bronze Sponsors</span>
+            <div class="tier-divider"></div>
+          </div>
+          <p class="tier-description">Bronze sponsors providing valued support for our community events and volunteer programme.</p>
+          <div class="sponsor-grid-silver">
+            <div class="sponsor-card-silver">
+              <div class="sponsor-logo-sm">🏬</div>
+              <p class="sp-name">Your Business Here</p>
+              <p class="sp-desc">Bronze Sponsor</p>
+            </div>
+            <div class="sponsor-card-silver">
+              <div class="sponsor-logo-sm">🏬</div>
+              <p class="sp-name">Your Business Here</p>
+              <p class="sp-desc">Bronze Sponsor</p>
+            </div>
+            <div class="sponsor-card-silver">
+              <div class="sponsor-logo-sm">🏬</div>
+              <p class="sp-name">Your Business Here</p>
+              <p class="sp-desc">Bronze Sponsor</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Friends -->
+        <div class="sponsor-tier">
+          <div class="tier-header">
+            <span class="tier-badge tier-friends">❤ Friends of Alderney Week</span>
+            <div class="tier-divider"></div>
+          </div>
+          <p class="tier-description">Individuals and businesses who have generously donated to support the community festival.</p>
+          <div class="sponsor-grid-friends">
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+            <div class="sponsor-card-friend">Friend &amp; Supporter</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Become a sponsor -->
+    <section class="become-section">
+      <div class="become-inner">
+        <div class="become-header">
+          <span class="section-tag">Get Involved</span>
+          <h2 class="section-title">Become a Sponsor</h2>
+          <p class="section-subtitle">Supporting Alderney Week is a fantastic way to show your commitment to the island community — and a great opportunity to put your brand in front of an engaged, appreciative audience.</p>
+        </div>
+
+        <div class="packages-grid">
+          <div class="package-card">
+            <h3 class="package-name">Bronze</h3>
+            <span class="package-price">From £250</span>
+            <div class="package-features">
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Name listed on the Alderney Week website</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Acknowledgement on event materials</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Social media mention</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Our heartfelt thanks</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center">Enquire</a>
+          </div>
+
+          <div class="package-card featured">
+            <h3 class="package-name">Silver</h3>
+            <span class="package-price">From £750</span>
+            <div class="package-features">
+              <div class="package-feature">
+                <span class="check" style="color:var(--gold)">✓</span>
+                <span class="feat-text">Logo on the Alderney Week website</span>
+              </div>
+              <div class="package-feature">
+                <span class="check" style="color:var(--gold)">✓</span>
+                <span class="feat-text">Prominent branding at events</span>
+              </div>
+              <div class="package-feature">
+                <span class="check" style="color:var(--gold)">✓</span>
+                <span class="feat-text">Named event sponsorship opportunity</span>
+              </div>
+              <div class="package-feature">
+                <span class="check" style="color:var(--gold)">✓</span>
+                <span class="feat-text">Social media features &amp; shoutouts</span>
+              </div>
+              <div class="package-feature">
+                <span class="check" style="color:var(--gold)">✓</span>
+                <span class="feat-text">Complimentary tickets to special events</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">Enquire</a>
+          </div>
+
+          <div class="package-card">
+            <h3 class="package-name">Gold</h3>
+            <span class="package-price">From £2,000</span>
+            <div class="package-features">
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Headline sponsor branding across all materials</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Logo on all print, digital, and on-site signage</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Named event or day sponsorship</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">VIP access to selected events</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Dedicated social media campaign features</span>
+              </div>
+              <div class="package-feature">
+                <span class="check">✓</span>
+                <span class="feat-text">Bespoke package tailored to your needs</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center">Enquire</a>
+          </div>
+        </div>
+
+        <div class="sponsor-contact">
+          <h3>Interested in Sponsoring?</h3>
+          <p>We'd love to discuss how your business can be part of Alderney Week 2026. Get in touch and we'll put together a tailored sponsorship package that works for you.</p>
+          <a href="contact.html" class="btn btn-navy btn-lg">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="Flickr Gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+  </script>
+</body>
+</html>

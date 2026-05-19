@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Alderney Week 2026</title>
+  <meta name="description" content="Help keep Alderney Week free and wonderful for everyone. Every donation supports the events, safety equipment, and volunteers that make the festival possible.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Donate hero callout */
+    .donate-intro { padding: 72px 24px; }
+    .donate-intro-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .donate-intro h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--navy); margin-bottom: 20px; }
+    .donate-intro p  { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .donate-intro p:last-of-type { margin-bottom: 0; }
+
+    .donate-box {
+      background: var(--navy);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      text-align: center;
+    }
+    .donate-box h3 {
+      color: var(--white);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .donate-box p {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .donate-amounts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .donate-amount-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .donate-amount-btn:hover,
+    .donate-amount-btn.selected {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+    .donate-custom-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .donate-custom-wrap .currency-symbol {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .donate-custom-input {
+      width: 100%;
+      padding: 13px 14px 13px 32px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+    }
+    .donate-custom-input:focus { border-color: var(--gold); }
+    .donate-box .btn { width: 100%; justify-content: center; }
+    .donate-box .secure-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 12px;
+    }
+
+    /* What funds section */
+    .funds-section { background: var(--white); padding: 80px 24px; }
+    .funds-inner { max-width: 1100px; margin: 0 auto; }
+    .funds-header { text-align: center; margin-bottom: 48px; }
+    .funds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .fund-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .fund-icon { font-size: 32px; display: block; margin-bottom: 14px; }
+    .fund-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+    .fund-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* Impact stats */
+    .impact-section {
+      background: linear-gradient(135deg, var(--navy) 0%, #1E4D7A 100%);
+      padding: 72px 24px;
+    }
+    .impact-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .impact-inner h2 { color: var(--white); font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 12px; }
+    .impact-inner > p { color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-bottom: 48px; }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .impact-stat { }
+    .impact-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .impact-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Other ways to help */
+    .other-ways { padding: 80px 24px; }
+    .other-ways-inner { max-width: 1100px; margin: 0 auto; }
+    .other-ways-header { text-align: center; margin-bottom: 48px; }
+    .other-ways-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .other-way-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+    }
+    .other-way-icon { font-size: 36px; display: block; margin-bottom: 14px; }
+    .other-way-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .other-way-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; }
+
+    /* Thank you section */
+    .thankyou-section {
+      background: var(--gold-light);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .thankyou-inner { max-width: 640px; margin: 0 auto; }
+    .thankyou-section h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--navy); margin-bottom: 16px; }
+    .thankyou-section p  { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; }
+
+    @media (max-width: 900px) {
+      .donate-intro-inner { grid-template-columns: 1fr; gap: 40px; }
+      .funds-grid { grid-template-columns: repeat(2, 1fr); }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .other-ways-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .funds-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .donate-amounts { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate active">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">Support Us</div>
+      <h1>Help Keep Alderney Week Free</h1>
+      <p>No government funding. No ticket prices. Just the generous support of people who love Alderney and what this festival means to our community.</p>
+      <div class="page-hero-wave">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Intro + donation box -->
+    <section class="donate-intro">
+      <div class="donate-intro-inner">
+        <div>
+          <h2>Why Your Support Matters</h2>
+          <p>Alderney Week receives no government funding. Everything you see — the sound systems, the safety barriers, the parade materials, the volunteers' support — is funded entirely through sponsorship and the generosity of people like you.</p>
+          <p>Every donation, no matter the size, makes a real difference. Your contribution helps us keep the main events completely free for families, maintain the high standards of safety and organisation the festival is known for, and ensure that Alderney Week continues to be the heartbeat of the island's summer for generations to come.</p>
+          <p>Donating is simple — just click the button below and choose the amount you'd like to give. On behalf of the whole island, thank you.</p>
+        </div>
+
+        <div class="donate-box">
+          <h3>Make a Donation</h3>
+          <p>Every pound makes a difference</p>
+          <div class="donate-amounts">
+            <button class="donate-amount-btn selected" onclick="selectAmount(this)">£10</button>
+            <button class="donate-amount-btn" onclick="selectAmount(this)">£25</button>
+            <button class="donate-amount-btn" onclick="selectAmount(this)">£50</button>
+            <button class="donate-amount-btn" onclick="selectAmount(this)">£100</button>
+          </div>
+          <div class="donate-custom-wrap">
+            <span class="currency-symbol">£</span>
+            <input type="number" class="donate-custom-input" placeholder="Other amount" min="1">
+          </div>
+          <a href="mailto:info@alderneyweek.com?subject=Donation%20-%20Alderney%20Week%202026" class="btn btn-primary btn-lg">Donate Now ❤️</a>
+          <p class="secure-note">Contact us at info@alderneyweek.com to arrange your donation</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What funds -->
+    <section class="funds-section">
+      <div class="funds-inner">
+        <div class="funds-header">
+          <span class="section-tag">Where Your Money Goes</span>
+          <h2 class="section-title">What Donations Fund</h2>
+          <p class="section-subtitle">Every penny raised goes directly towards making Alderney Week safe, wonderful, and free.</p>
+        </div>
+        <div class="funds-grid">
+          <div class="fund-card">
+            <span class="fund-icon">🎺</span>
+            <h3>Sound &amp; Stage Equipment</h3>
+            <p>Quality sound systems and staging for the Cavalcade, concerts, and other events throughout the week — the infrastructure that makes every event come alive.</p>
+          </div>
+          <div class="fund-card">
+            <span class="fund-icon">🎠</span>
+            <h3>Parade Materials</h3>
+            <p>Floats, decorations, costumes, and all the materials that go into creating the spectacular Cavalcade and other parade events that are the hallmark of Alderney Week.</p>
+          </div>
+          <div class="fund-card">
+            <span class="fund-icon">🦺</span>
+            <h3>Safety &amp; Security</h3>
+            <p>Safety barriers, first aid provision, stewards, and all the equipment and personnel needed to ensure every event is safe and well-managed for everyone attending.</p>
+          </div>
+          <div class="fund-card">
+            <span class="fund-icon">🧑‍🤝‍🧑</span>
+            <h3>Volunteer Support</h3>
+            <p>Training, equipment, and coordination for the amazing volunteers who give their time to make Alderney Week happen — the backbone of the entire festival.</p>
+          </div>
+          <div class="fund-card">
+            <span class="fund-icon">🎆</span>
+            <h3>Fireworks Display</h3>
+            <p>The spectacular grand finale fireworks display at The Butes — one of the most memorable moments of the entire week, made possible by generous donations and sponsors.</p>
+          </div>
+          <div class="fund-card">
+            <span class="fund-icon">📣</span>
+            <h3>Promotion &amp; Community</h3>
+            <p>Spreading the word about Alderney Week, welcoming visitors to the island, and continuing to grow the festival so it remains relevant and exciting for new generations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="impact-section">
+      <div class="impact-inner">
+        <h2>The Impact of Your Support</h2>
+        <p>Thanks to generous donors and sponsors, Alderney Week continues to thrive as one of the Channel Islands' most beloved community events.</p>
+        <div class="impact-grid">
+          <div class="impact-stat">
+            <span class="impact-number">118</span>
+            <span class="impact-label">Years of Alderney Week history</span>
+          </div>
+          <div class="impact-stat">
+            <span class="impact-number">100+</span>
+            <span class="impact-label">Events &amp; activities each year</span>
+          </div>
+          <div class="impact-stat">
+            <span class="impact-number">Free</span>
+            <span class="impact-label">For families &amp; children</span>
+          </div>
+          <div class="impact-stat">
+            <span class="impact-number">100%</span>
+            <span class="impact-label">Volunteer &amp; donor funded</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other ways to help -->
+    <section class="other-ways">
+      <div class="other-ways-inner">
+        <div class="other-ways-header">
+          <span class="section-tag">Beyond Donating</span>
+          <h2 class="section-title">Other Ways to Help</h2>
+          <p class="section-subtitle">There are many ways to support Alderney Week and ensure it continues to thrive.</p>
+        </div>
+        <div class="other-ways-grid">
+          <div class="other-way-card">
+            <span class="other-way-icon">🤝</span>
+            <h3>Volunteer</h3>
+            <p>Give a few hours — or the whole week — to help with stewarding, logistics, setup, or any of the other roles that keep the festival running smoothly and safely.</p>
+            <a href="contact.html" class="btn btn-navy btn-sm">Get in Touch</a>
+          </div>
+          <div class="other-way-card">
+            <span class="other-way-icon">🏢</span>
+            <h3>Sponsor</h3>
+            <p>If you're a business, consider becoming an official sponsor. It's a wonderful way to show your commitment to the island and get your brand in front of a great audience.</p>
+            <a href="sponsors.html" class="btn btn-navy btn-sm">View Packages</a>
+          </div>
+          <div class="other-way-card">
+            <span class="other-way-icon">📢</span>
+            <h3>Spread the Word</h3>
+            <p>Tell your friends and family about Alderney Week! Sharing the event online, inviting people to the island, and building excitement all make a real difference.</p>
+            <a href="contact.html" class="btn btn-navy btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thank you -->
+    <section class="thankyou-section">
+      <div class="thankyou-inner">
+        <span style="font-size:48px;display:block;margin-bottom:20px">🙏</span>
+        <h2>Thank You, From the Bottom of Our Hearts</h2>
+        <p>Whether you donate £5 or £500, volunteer for an afternoon, or simply come and join in the celebration — you are what makes Alderney Week possible. On behalf of the entire island, thank you.</p>
+        <br>
+        <p><em>— The Alderney Week Team</em></p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="Flickr Gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+
+    function selectAmount(btn) {
+      document.querySelectorAll('.donate-amount-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.querySelector('.donate-custom-input').value = '';
+    }
+
+    document.querySelector('.donate-custom-input').addEventListener('input', () => {
+      document.querySelectorAll('.donate-amount-btn').forEach(b => b.classList.remove('selected'));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Alderney Week 2026</title>
+  <meta name="description" content="Explore all the events at Alderney Week 2026 — from the Cavalcade and Man Powered Flight to the Torchlight Procession and Fireworks, 1st–8th August 2026.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .filter-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+    }
+    .filter-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 14px 0;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .filter-bar-inner::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    .calendar-section { padding: 64px 24px; }
+    .calendar-inner { max-width: 1100px; margin: 0 auto; }
+
+    .day-block { margin-bottom: 56px; }
+    .day-block:last-child { margin-bottom: 0; }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .day-circle {
+      width: 58px;
+      height: 58px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .day-circle .dc-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .day-circle .dc-month {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+    .day-info h2 { font-size: 1.25rem; color: var(--navy); margin-bottom: 2px; }
+    .day-info p { font-size: 13px; color: var(--text-muted); }
+    .day-divider { flex: 1; height: 1px; background: var(--border); }
+
+    .day-events { display: flex; flex-direction: column; gap: 14px; }
+
+    .event-row {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      display: grid;
+      grid-template-columns: 56px 1fr 120px;
+      gap: 20px;
+      align-items: start;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .event-row:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+
+    .event-row-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .icon-bg-navy   { background: rgba(27,58,92,0.08); }
+    .icon-bg-gold   { background: rgba(242,166,43,0.12); }
+    .icon-bg-coral  { background: rgba(232,85,58,0.1); }
+    .icon-bg-teal   { background: rgba(42,139,114,0.1); }
+    .icon-bg-purple { background: rgba(130,80,200,0.1); }
+
+    .event-row-body h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 6px; }
+    .event-row-body p  { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 10px; }
+    .event-row-tags    { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .event-row-meta { text-align: right; }
+    .event-row-meta .ev-time {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+    .event-row-meta .ev-loc { font-size: 12px; color: var(--text-muted); }
+
+    .adults-row {
+      background: var(--navy);
+      border: none;
+    }
+    .adults-row:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+    .adults-row .event-row-body h3 { color: var(--white); }
+    .adults-row .event-row-body p  { color: rgba(255,255,255,0.7); }
+    .adults-row .event-row-meta .ev-time   { color: var(--gold); }
+    .adults-row .event-row-meta .ev-loc    { color: rgba(255,255,255,0.5); }
+
+    .practical-section { background: var(--white); padding: 80px 24px; }
+    .practical-inner { max-width: 1100px; margin: 0 auto; }
+    .practical-header { text-align: center; margin-bottom: 48px; }
+    .practical-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .practical-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .practical-card-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+    .practical-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .practical-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    @media (max-width: 900px) {
+      .event-row { grid-template-columns: 56px 1fr; }
+      .event-row-meta { display: none; }
+      .practical-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .event-row { grid-template-columns: 1fr; padding: 18px; }
+      .practical-cards { grid-template-columns: 1fr; }
+      .day-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">1st – 8th August 2026</div>
+      <h1>Events Programme</h1>
+      <p>Eight days of unforgettable fun, entertainment and island spirit — something for everyone, and most events are completely free.</p>
+      <div class="page-hero-wave">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-bar-inner">
+        <button class="filter-btn active" data-filter="all">All Events</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+        <button class="filter-btn" data-filter="free">Free</button>
+        <button class="filter-btn" data-filter="adults">Adults Only</button>
+        <button class="filter-btn" data-filter="daytime">Daytime</button>
+        <button class="filter-btn" data-filter="evening">Evening</button>
+      </div>
+    </div>
+
+    <section class="calendar-section">
+      <div class="calendar-inner">
+
+        <!-- Day 1 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle">
+              <span class="dc-num">1</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Friday 1st August</h2>
+              <p>Opening day — the fun begins!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-teal">🛒</div>
+              <div class="event-row-body">
+                <h3>Street Market</h3>
+                <p>Kick off Alderney Week at the Street Market. Local vendors fill the streets with fresh produce, handmade crafts, island souvenirs, and delicious food. A wonderful way to soak up the Alderney atmosphere and chat with locals.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Daytime</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">All Day</span>
+                <span class="ev-loc">Victoria Street</span>
+              </div>
+            </div>
+            <div class="event-row adults-row" data-tags="adults evening">
+              <div class="event-row-icon icon-bg-purple" style="background:rgba(255,255,255,0.1)">🎶</div>
+              <div class="event-row-body">
+                <h3>Quarry Party — Night 1</h3>
+                <p>The legendary adults-only Quarry Party kicks off Alderney Week with a bang. Dance the night away in the unique setting of Alderney's historic quarry — a venue unlike any other.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-coral">18+ Only</span>
+                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Late Night</span>
+                <span class="ev-loc">The Quarry</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle" style="background:var(--gold)">
+              <span class="dc-num" style="color:var(--navy)">2</span>
+              <span class="dc-month" style="color:rgba(27,58,92,0.7)">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Saturday 2nd August</h2>
+              <p>Cavalcade Day — the highlight of the whole week!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-gold">🎠</div>
+              <div class="event-row-body">
+                <h3>The Cavalcade</h3>
+                <p>The undisputed highlight of Alderney Week! Beautifully decorated floats parade down Victoria Street to The Butes, with food vendors, games, and family entertainment all along the route. An unmissable community celebration packed with colour, music, and joy.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Daytime</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Afternoon</span>
+                <span class="ev-loc">Victoria St → The Butes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle">
+              <span class="dc-num">3</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Sunday 3rd August</h2>
+              <p>Man Powered Flight — expect the unexpected!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-coral">✈️</div>
+              <div class="event-row-body">
+                <h3>Man Powered Flight</h3>
+                <p>Competitors launch their homemade flying machines from Douglas Quay in an attempt at powered flight. The results are always wonderfully chaotic — whether they soar or splash spectacularly into the harbour below, it's guaranteed entertainment for the whole family.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Daytime</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Afternoon</span>
+                <span class="ev-loc">Douglas Quay</span>
+              </div>
+            </div>
+            <div class="event-row adults-row" data-tags="adults evening">
+              <div class="event-row-icon" style="background:rgba(255,255,255,0.1);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px">🏚️</div>
+              <div class="event-row-body">
+                <h3>Bunker Party — Night 2</h3>
+                <p>Party in one of Alderney's extraordinary WWII bunkers — an utterly unique adults-only experience. History meets nightlife in the most memorable setting you'll ever encounter.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-coral">18+ Only</span>
+                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Late Night</span>
+                <span class="ev-loc">WWII Bunker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle">
+              <span class="dc-num">4</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Monday 4th August</h2>
+              <p>Water Splash — prepare to get soaked!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-gold">💦</div>
+              <div class="event-row-body">
+                <h3>Water Splash</h3>
+                <p>The kids' absolute favourite! Children armed with water guns join forces — and take on — the island's fire brigade in the wettest, wildest afternoon of the week. No winners, no losers, just pure joyful chaos. Bring a change of clothes!</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-navy">Kids' Favourite</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Daytime</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Afternoon</span>
+                <span class="ev-loc">Town Centre</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle">
+              <span class="dc-num">5</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Tuesday 5th August</h2>
+              <p>Scavenger Hunt — explore every corner of the island!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-teal">🗺️</div>
+              <div class="event-row-body">
+                <h3>Scavenger Hunt</h3>
+                <p>Teams race around the island tracking down hidden clues and completing a list of challenges. A brilliant way to explore Alderney's beautiful coastlines, historic sites, and hidden corners — while competing to be the first team back with a completed list.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Daytime</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">All Day</span>
+                <span class="ev-loc">Island-wide</span>
+              </div>
+            </div>
+            <div class="event-row adults-row" data-tags="adults evening">
+              <div class="event-row-icon" style="background:rgba(255,255,255,0.1);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px">🎶</div>
+              <div class="event-row-body">
+                <h3>Quarry Party — Night 3</h3>
+                <p>The Quarry Party returns for another unforgettable night of great music and dancing in this spectacular one-of-a-kind venue. Adults only — a true Alderney Week institution.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-coral">18+ Only</span>
+                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Late Night</span>
+                <span class="ev-loc">The Quarry</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle">
+              <span class="dc-num">6</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Wednesday 6th August</h2>
+              <p>Mid-week fun continues</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-navy">🏆</div>
+              <div class="event-row-body">
+                <h3>Sports &amp; Community Activities</h3>
+                <p>A packed programme of sports competitions, fun games, and community activities spread throughout the day. Full schedule to be confirmed — contact the team or watch our social channels for the latest updates.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Daytime</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">All Day</span>
+                <span class="ev-loc">Various Venues</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle">
+              <span class="dc-num">7</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Thursday 7th August</h2>
+              <p>Sandcastle Competition — to the beach!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free daytime">
+              <div class="event-row-icon icon-bg-coral">🏖️</div>
+              <div class="event-row-body">
+                <h3>Sandcastle Competition</h3>
+                <p>Head to Alderney's beautiful sandy beaches and build the most spectacular sandcastle you can! Prizes are awarded across age categories, so everyone has a chance. Pack your buckets, spades, and imagination — engineering talent and wild creativity both welcome!</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Morning</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Morning</span>
+                <span class="ev-loc">Alderney Beaches</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-circle" style="background:var(--coral)">
+              <span class="dc-num">8</span>
+              <span class="dc-month">Aug</span>
+            </div>
+            <div class="day-info">
+              <h2>Saturday 8th August</h2>
+              <p>Grand Finale — Torchlight Procession &amp; Fireworks!</p>
+            </div>
+            <div class="day-divider"></div>
+          </div>
+          <div class="day-events">
+            <div class="event-row" data-tags="family free evening">
+              <div class="event-row-icon icon-bg-navy">🔥</div>
+              <div class="event-row-body">
+                <h3>Torchlight Procession, Bonfire &amp; Fireworks</h3>
+                <p>The magical grand finale of Alderney Week. Residents light their torches and walk together through the town streets, gathering at The Butes to light a great communal bonfire. An ancient tradition connecting us to over a thousand years of island history — truly moving and spectacular. The evening concludes with a breathtaking fireworks display lighting up the Alderney sky.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-green">All Ages</span>
+                  <span class="badge badge-gold">Free</span>
+                  <span class="badge badge-navy">Evening</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Evening</span>
+                <span class="ev-loc">Town → The Butes</span>
+              </div>
+            </div>
+            <div class="event-row adults-row" data-tags="adults evening">
+              <div class="event-row-icon" style="background:rgba(255,255,255,0.1);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px">🎉</div>
+              <div class="event-row-body">
+                <h3>Quarry Party — Grand Finale Night</h3>
+                <p>End Alderney Week on the very highest note with the final Quarry Party. The biggest and best night of them all — dance, celebrate, and say a fond farewell to another incredible Alderney Week.</p>
+                <div class="event-row-tags">
+                  <span class="badge badge-coral">18+ Only</span>
+                  <span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)">Evening</span>
+                </div>
+              </div>
+              <div class="event-row-meta">
+                <span class="ev-time">Late Night</span>
+                <span class="ev-loc">The Quarry</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Practical -->
+    <section class="practical-section">
+      <div class="practical-inner">
+        <div class="practical-header">
+          <span class="section-tag">Good to Know</span>
+          <h2 class="section-title">Practical Information</h2>
+          <p class="section-subtitle">Everything you need to enjoy Alderney Week to the fullest.</p>
+        </div>
+        <div class="practical-cards">
+          <div class="practical-card">
+            <span class="practical-card-icon">🎟️</span>
+            <h3>Cost &amp; Tickets</h3>
+            <p>The vast majority of events are completely free — just turn up and enjoy! Some special activities may require a ticket. Check with the organisers for the latest details closer to the event.</p>
+          </div>
+          <div class="practical-card">
+            <span class="practical-card-icon">👨‍👩‍👧‍👦</span>
+            <h3>Family Friendly</h3>
+            <p>Alderney Week is a family celebration at heart. The adults-only Quarry &amp; Bunker Parties are clearly marked — everything else is suitable for children of all ages.</p>
+          </div>
+          <div class="practical-card">
+            <span class="practical-card-icon">📍</span>
+            <h3>Getting Around</h3>
+            <p>Alderney is a small island — most venues are within easy walking distance of town. Enjoy exploring on foot and discovering everything the island has to offer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="Flickr Gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const eventRows  = document.querySelectorAll('[data-tags]');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        eventRows.forEach(row => {
+          const tags = row.dataset.tags || '';
+          row.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

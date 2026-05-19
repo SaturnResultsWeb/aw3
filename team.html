@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Team — Alderney Week 2026</title>
+  <meta name="description" content="Meet the dedicated volunteers and organisers behind Alderney Week 2026 — the people who make the magic happen every year.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Volunteer section */
+    .team-section { padding: 80px 24px; }
+    .team-inner { max-width: 1100px; margin: 0 auto; }
+    .team-header { text-align: center; margin-bottom: 56px; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .avatar-navy  { background: rgba(27,58,92,0.08); }
+    .avatar-gold  { background: rgba(242,166,43,0.12); }
+    .avatar-coral { background: rgba(232,85,58,0.1); }
+    .avatar-teal  { background: rgba(42,139,114,0.1); }
+
+    .team-card h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 4px; }
+    .team-role {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .team-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* Volunteer CTA */
+    .volunteer-banner {
+      background: linear-gradient(135deg, var(--teal) 0%, #1E6B55 100%);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .volunteer-banner h3 {
+      color: var(--white);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .volunteer-banner p {
+      color: rgba(255,255,255,0.8);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* Values section */
+    .values-section { background: var(--white); padding: 80px 24px; }
+    .values-inner { max-width: 1100px; margin: 0 auto; }
+    .values-header { text-align: center; margin-bottom: 48px; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .value-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .value-icon { font-size: 36px; display: block; margin-bottom: 14px; }
+    .value-card h3 { font-size: 1rem; color: var(--navy); margin-bottom: 8px; }
+    .value-card p  { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    @media (max-width: 900px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .volunteer-banner { grid-template-columns: 1fr; text-align: center; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html" class="active">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">Volunteer-Run</div>
+      <h1>The Team</h1>
+      <p>Alderney Week is made possible entirely by a dedicated group of islanders who give their time, energy, and passion to make the magic happen every year.</p>
+      <div class="page-hero-wave">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <section class="team-section">
+      <div class="team-inner">
+        <div class="team-header">
+          <span class="section-tag">Meet the Organisers</span>
+          <h2 class="section-title">The People Behind Alderney Week</h2>
+          <p class="section-subtitle">A dedicated team of islanders who come together each year to plan, organise, and deliver one of the Channel Islands' most-loved community festivals.</p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar avatar-navy">👤</div>
+            <h3>Committee Chair</h3>
+            <p class="team-role">Overall Leadership</p>
+            <p>Leading the organising committee, overseeing the event programme, and ensuring Alderney Week remains a wonderful celebration for the whole island community.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar avatar-gold">👤</div>
+            <h3>Events Coordinator</h3>
+            <p class="team-role">Programme &amp; Logistics</p>
+            <p>Responsible for planning and coordinating the full events programme — from the Cavalcade to Man Powered Flight, ensuring every event runs smoothly on the day.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar avatar-coral">👤</div>
+            <h3>Treasurer</h3>
+            <p class="team-role">Finance &amp; Budgeting</p>
+            <p>Managing the finances of Alderney Week, ensuring that every donation and sponsorship pound is used effectively to deliver the best possible experience for everyone.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar avatar-teal">👤</div>
+            <h3>Sponsorship Lead</h3>
+            <p class="team-role">Partners &amp; Sponsors</p>
+            <p>Building and maintaining relationships with the generous businesses and individuals who support Alderney Week and help keep the festival free for families.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar avatar-navy">👤</div>
+            <h3>Safety Officer</h3>
+            <p class="team-role">Health &amp; Safety</p>
+            <p>Ensuring that every event is safe, enjoyable, and well-managed — working with authorities and volunteers to keep everyone protected throughout the week.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar avatar-gold">👤</div>
+            <h3>Volunteer Coordinator</h3>
+            <p class="team-role">Volunteer Management</p>
+            <p>Recruiting, briefing, and supporting the amazing team of volunteers who give up their time to help make Alderney Week the spectacular event it is each year.</p>
+          </div>
+        </div>
+
+        <!-- Volunteer CTA -->
+        <div class="volunteer-banner">
+          <div>
+            <h3>Want to Get Involved?</h3>
+            <p>Alderney Week is run entirely by volunteers, and we're always looking for enthusiastic people to join the team. Whether you can help for a few hours or the whole week, we'd love to hear from you.</p>
+          </div>
+          <a href="contact.html" class="btn btn-primary btn-lg" style="flex-shrink:0">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values-section">
+      <div class="values-inner">
+        <div class="values-header">
+          <span class="section-tag">Our Ethos</span>
+          <h2 class="section-title">What Drives Us</h2>
+          <p class="section-subtitle">The values that guide everything we do at Alderney Week.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <span class="value-icon">🤝</span>
+            <h3>Community First</h3>
+            <p>Every decision we make puts the Alderney community at its heart — locals and visitors alike, of all ages.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🆓</span>
+            <h3>Free for Families</h3>
+            <p>We work hard every year to ensure that the main events remain free and accessible for everyone on the island.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🏝️</span>
+            <h3>Island Pride</h3>
+            <p>Alderney Week celebrates everything wonderful about this unique island — its history, its people, and its spirit.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">⭐</span>
+            <h3>Volunteer Powered</h3>
+            <p>From the committee to the stewards, Alderney Week is made possible entirely by people who simply love the island.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="Flickr Gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+  </script>
+</body>
+</html>

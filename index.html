@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alderney Week 2026 — Under The Spotlight</title>
+  <meta name="description" content="From 1st to 8th August, step Under The Spotlight and celebrate Alderney Week 2026 with a full week of unforgettable events, entertainment and island spirit.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(150deg, #0F2540 0%, #1B3A5C 40%, #1E5B8A 75%, #2A8B72 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(242,166,43,0.08) 0%, transparent 70%);
+    }
+    .hero-stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-star {
+      position: absolute;
+      color: rgba(242,166,43,0.4);
+      font-size: 14px;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.2); }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(242,166,43,0.15);
+      border: 1px solid rgba(242,166,43,0.4);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .hero-theme {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--gold);
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .hero-dates {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 48px;
+    }
+    .hero-dates strong { color: rgba(255,255,255,0.95); font-weight: 700; }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .countdown-unit {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      min-width: 80px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .countdown-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+    .countdown-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 6px;
+      display: block;
+    }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-wave { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+
+    /* About */
+    .about-section { padding: 96px 24px; background: var(--cream); }
+    .about-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+      border-radius: var(--radius-xl);
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .about-visual-icon { font-size: 64px; position: relative; }
+    .about-visual-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      text-align: center;
+      padding: 0 32px;
+      position: relative;
+    }
+    .about-visual-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      position: relative;
+    }
+    .about-content p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; margin-bottom: 16px; }
+    .about-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 24px 0 28px;
+    }
+    .about-fact {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .about-fact-icon { font-size: 22px; flex-shrink: 0; }
+    .about-fact-text strong { display: block; font-size: 14px; color: var(--navy); font-weight: 700; margin-bottom: 2px; }
+    .about-fact-text span { font-size: 12px; color: var(--text-muted); }
+
+    /* Events highlights */
+    .events-section { background: var(--white); padding: 96px 24px; }
+    .events-header {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .events-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .event-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); background: var(--white); }
+    .event-card-header { display: flex; align-items: center; justify-content: space-between; }
+    .event-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .event-icon-navy { background: rgba(27,58,92,0.08); }
+    .event-icon-gold { background: rgba(242,166,43,0.12); }
+    .event-icon-coral { background: rgba(232,85,58,0.1); }
+    .event-icon-teal { background: rgba(42,139,114,0.1); }
+    .event-day { font-size: 12px; font-weight: 600; color: var(--text-muted); text-align: right; }
+    .event-day strong { display: block; font-size: 14px; color: var(--navy); font-weight: 700; }
+    .event-card h3 { font-size: 1.15rem; color: var(--navy); }
+    .event-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; flex: 1; }
+    .event-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    /* Stats */
+    .stats-section { background: var(--navy); padding: 64px 24px; }
+    .stats-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* History Teaser */
+    .history-teaser { background: var(--cream); padding: 96px 24px; }
+    .history-teaser-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--navy) 0%, #1E4D7A 100%);
+      border-radius: var(--radius-xl);
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .history-teaser-inner::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(242,166,43,0.06);
+    }
+    .history-teaser-inner::after {
+      content: '';
+      position: absolute;
+      left: -40px; bottom: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(42,139,114,0.08);
+    }
+    .history-text { position: relative; z-index: 1; }
+    .history-text h2 { color: var(--white); font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 16px; }
+    .history-text p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.8; margin-bottom: 28px; }
+    .history-milestones { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 18px; }
+    .milestone { display: flex; gap: 14px; align-items: flex-start; }
+    .milestone-year {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .milestone-text { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.6; padding-top: 3px; }
+
+    /* Donate CTA */
+    .donate-cta { background: var(--gold-light); padding: 80px 24px; text-align: center; }
+    .donate-cta-inner { max-width: 620px; margin: 0 auto; }
+    .donate-cta .heart { font-size: 48px; display: block; margin-bottom: 20px; }
+    .donate-cta h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--navy); margin-bottom: 16px; }
+    .donate-cta p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual { aspect-ratio: 16/7; }
+      .history-teaser-inner { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+      .events-grid { grid-template-columns: 1fr; }
+      .about-facts { grid-template-columns: 1fr; }
+      .events-header { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .countdown { gap: 10px; }
+      .countdown-unit { min-width: 68px; padding: 12px 14px; }
+      .countdown-number { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-stars" aria-hidden="true">
+      <span class="hero-star" style="top:12%;left:8%;animation-delay:0s">★</span>
+      <span class="hero-star" style="top:25%;left:92%;animation-delay:0.8s">★</span>
+      <span class="hero-star" style="top:60%;left:5%;animation-delay:1.4s">✦</span>
+      <span class="hero-star" style="top:75%;left:88%;animation-delay:0.3s">★</span>
+      <span class="hero-star" style="top:40%;left:95%;animation-delay:1.8s;font-size:10px">✦</span>
+      <span class="hero-star" style="top:80%;left:15%;animation-delay:1.1s;font-size:10px">★</span>
+      <span class="hero-star" style="top:18%;left:50%;animation-delay:2s;font-size:10px">✦</span>
+    </div>
+
+    <div class="hero-content fade-up">
+      <div class="hero-badge">★ Alderney Week 2026</div>
+      <h1>Under The<br>Spotlight</h1>
+      <p class="hero-theme">A Celebration Like No Other</p>
+      <p class="hero-dates">
+        <strong>1st – 8th August 2026</strong> &nbsp;·&nbsp; Alderney, Channel Islands
+      </p>
+
+      <div class="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-number" id="days">--</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="hours">--</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="minutes">--</span>
+          <span class="countdown-label">Mins</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="seconds">--</span>
+          <span class="countdown-label">Secs</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="events.html" class="btn btn-primary btn-lg">View All Events</a>
+        <a href="getting-here.html" class="btn btn-secondary btn-lg">Plan Your Visit</a>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,48 C240,80 480,16 720,40 C960,64 1200,20 1440,40 L1440,80 L0,80 Z" fill="#FEFAF4"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-section">
+    <div class="about-grid">
+      <div class="about-visual">
+        <span class="about-visual-icon">🏝️</span>
+        <p class="about-visual-text">Island Spirit, Community Heart</p>
+        <p class="about-visual-sub">Since 1908</p>
+      </div>
+      <div class="about-content">
+        <span class="section-tag">About the Festival</span>
+        <h2 class="section-title">Alderney's Biggest<br>Summer Celebration</h2>
+        <p>Every summer, the tiny island of Alderney comes alive with a week of incredible events — from spectacular cavalcades and fireworks to hilarious man-powered flight contests and family beach fun.</p>
+        <p>This is community celebration at its finest — most events are completely free, and everyone is welcome, whether you're a local or visiting from across the world.</p>
+        <div class="about-facts">
+          <div class="about-fact">
+            <span class="about-fact-icon">📅</span>
+            <div class="about-fact-text">
+              <strong>8 Days of Events</strong>
+              <span>1st – 8th August 2026</span>
+            </div>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-icon">🆓</span>
+            <div class="about-fact-text">
+              <strong>Mostly Free</strong>
+              <span>Great fun for all the family</span>
+            </div>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-icon">🏖️</span>
+            <div class="about-fact-text">
+              <strong>Island Location</strong>
+              <span>Alderney, Channel Islands</span>
+            </div>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-icon">🎉</span>
+            <div class="about-fact-text">
+              <strong>All Welcome</strong>
+              <span>Families, visitors &amp; locals</span>
+            </div>
+          </div>
+        </div>
+        <a href="events.html" class="btn btn-navy">Explore All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Highlights -->
+  <section class="events-section">
+    <div class="events-header">
+      <div>
+        <span class="section-tag">What's On</span>
+        <h2 class="section-title">Highlights of the Week</h2>
+      </div>
+      <a href="events.html" class="btn btn-outline">See All Events →</a>
+    </div>
+
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-icon event-icon-gold">🎠</div>
+          <div class="event-day"><span>Saturday</span><strong>2 Aug</strong></div>
+        </div>
+        <h3>The Cavalcade</h3>
+        <p>Decorated floats parade down Victoria Street to The Butes, with food vendors, games, and non-stop family entertainment. The highlight of the whole week!</p>
+        <div class="event-tags">
+          <span class="badge badge-green">All Ages</span>
+          <span class="badge badge-gold">Free</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-icon event-icon-coral">✈️</div>
+          <div class="event-day"><span>Sunday</span><strong>3 Aug</strong></div>
+        </div>
+        <h3>Man Powered Flight</h3>
+        <p>Teams launch homemade flying contraptions from Douglas Quay. Hilarious results guaranteed — whether they soar or splash into the sea below!</p>
+        <div class="event-tags">
+          <span class="badge badge-green">All Ages</span>
+          <span class="badge badge-gold">Free</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-icon event-icon-navy">🔥</div>
+          <div class="event-day"><span>Saturday</span><strong>8 Aug</strong></div>
+        </div>
+        <h3>Torchlight Procession</h3>
+        <p>The grand finale — residents walk through town by torchlight before a spectacular bonfire and fireworks display at The Butes. Truly magical.</p>
+        <div class="event-tags">
+          <span class="badge badge-green">All Ages</span>
+          <span class="badge badge-gold">Free</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-icon event-icon-teal">🛒</div>
+          <div class="event-day"><span>Friday</span><strong>1 Aug</strong></div>
+        </div>
+        <h3>Street Market</h3>
+        <p>Kick off the week with local vendors showcasing fresh produce, handmade crafts, and distinctive island goods. The perfect warm-up!</p>
+        <div class="event-tags">
+          <span class="badge badge-green">All Ages</span>
+          <span class="badge badge-gold">Free</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-icon event-icon-gold">💦</div>
+          <div class="event-day"><span>Monday</span><strong>4 Aug</strong></div>
+        </div>
+        <h3>Water Splash</h3>
+        <p>Children armed with water guns join the fire brigade for the wettest afternoon of the week! Pure, joyful fun — no winners, no losers, just soaking wet smiles.</p>
+        <div class="event-tags">
+          <span class="badge badge-navy">Kids' Favourite</span>
+          <span class="badge badge-gold">Free</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-card-header">
+          <div class="event-icon event-icon-coral">🏖️</div>
+          <div class="event-day"><span>Thursday</span><strong>7 Aug</strong></div>
+        </div>
+        <h3>Sandcastle Competition</h3>
+        <p>Head to Alderney's beautiful beaches and build the most spectacular sandcastle you can. All ages compete for prizes in this beloved island tradition.</p>
+        <div class="event-tags">
+          <span class="badge badge-green">All Ages</span>
+          <span class="badge badge-gold">Free</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div>
+        <span class="stat-number">118</span>
+        <span class="stat-label">Years of Celebration</span>
+      </div>
+      <div>
+        <span class="stat-number">8</span>
+        <span class="stat-label">Days of Events</span>
+      </div>
+      <div>
+        <span class="stat-number">100+</span>
+        <span class="stat-label">Events &amp; Activities</span>
+      </div>
+      <div>
+        <span class="stat-number">Free</span>
+        <span class="stat-label">For Families</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- History Teaser -->
+  <section class="history-teaser">
+    <div class="history-teaser-inner">
+      <div class="history-text">
+        <span class="section-tag" style="background:rgba(242,166,43,0.15);color:var(--gold);border-color:rgba(242,166,43,0.3)">Our Story</span>
+        <h2>Over a Century of Island Spirit</h2>
+        <p>Alderney Week has roots stretching back to ancient island traditions — from pagan bonfire ceremonies to military sports days. The first recorded Alderney Week took place in July 1908, and it's been growing ever since.</p>
+        <a href="history.html" class="btn btn-primary">Explore Our History</a>
+      </div>
+      <div class="history-milestones">
+        <div class="milestone">
+          <span class="milestone-year">1908</span>
+          <p class="milestone-text">The first recorded Alderney Week — sports, concerts, a torchlight tattoo and fireworks, organised by Major B.E. Ward.</p>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">1948</span>
+          <p class="milestone-text">Post-war revival: a cattle show evolves into a carnival with beauty queens and community celebrations.</p>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">1953</span>
+          <p class="milestone-text">The beloved cavalcade of decorated floats introduced for the very first time.</p>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">1970</span>
+          <p class="milestone-text">Ray Parkin grows the programme to over 65 events, reaching 100+ activities by 1990.</p>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">Today</span>
+          <p class="milestone-text">A modern festival with ancient roots — the torchlight procession reconnects us to over a thousand years of tradition.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate CTA -->
+  <section class="donate-cta">
+    <div class="donate-cta-inner">
+      <span class="heart">❤️</span>
+      <h2>Help Keep Alderney Week Free</h2>
+      <p>Alderney Week receives no government funding. Every donation, big or small, helps cover the essentials — parade materials, sound systems, safety equipment, and the volunteers that make it all happen.</p>
+      <a href="donate.html" class="btn btn-coral btn-lg">Support Alderney Week</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="View our Flickr gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+
+    function updateCountdown() {
+      const target = new Date('2026-08-01T00:00:00');
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
+        return;
+      }
+      document.getElementById('days').textContent    = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

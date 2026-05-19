@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Here — Alderney Week 2026</title>
+  <meta name="description" content="Plan your visit to Alderney Week 2026. Find out how to get to Alderney by air or sea, where to stay, and everything you need to know before you arrive.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Transport section */
+    .transport-section { padding: 80px 24px; }
+    .transport-inner { max-width: 1100px; margin: 0 auto; }
+    .transport-header { text-align: center; margin-bottom: 56px; }
+
+    .transport-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .transport-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      transition: box-shadow var(--transition);
+    }
+    .transport-card:hover { box-shadow: var(--shadow-lg); }
+
+    .transport-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    .t-icon-navy { background: rgba(27,58,92,0.08); }
+    .t-icon-teal { background: rgba(42,139,114,0.1); }
+
+    .transport-card h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .transport-card > p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+
+    .transport-details { display: flex; flex-direction: column; gap: 12px; }
+    .transport-detail {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      background: var(--cream);
+      border-radius: var(--radius-md);
+    }
+    .td-icon { font-size: 18px; flex-shrink: 0; }
+    .td-body strong { display: block; font-size: 14px; color: var(--navy); margin-bottom: 2px; }
+    .td-body span   { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Accommodation */
+    .accommodation-section { background: var(--white); padding: 80px 24px; }
+    .accommodation-inner { max-width: 1100px; margin: 0 auto; }
+    .accommodation-header { text-align: center; margin-bottom: 48px; }
+
+    .accom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .accom-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+    }
+    .accom-icon { font-size: 36px; display: block; margin-bottom: 14px; }
+    .accom-card h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .accom-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    .accom-tip {
+      background: var(--gold-light);
+      border: 1.5px solid rgba(242,166,43,0.3);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .accom-tip .tip-icon { font-size: 24px; flex-shrink: 0; }
+    .accom-tip h4 { font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
+    .accom-tip p  { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* Island info */
+    .island-section { padding: 80px 24px; }
+    .island-inner { max-width: 1100px; margin: 0 auto; }
+
+    .island-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .island-visual {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+      border-radius: var(--radius-xl);
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .island-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .island-visual-icon { font-size: 56px; position: relative; }
+    .island-visual-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); text-align: center; padding: 0 28px; position: relative; }
+    .island-visual-sub  { font-size: 13px; color: rgba(255,255,255,0.6); font-family: 'Nunito', sans-serif; font-weight: 600; position: relative; }
+
+    .island-info h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--navy); margin-bottom: 16px; }
+    .island-info p  { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+
+    .island-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .island-fact {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+    .island-fact strong { display: block; font-size: 13px; color: var(--navy); font-weight: 700; }
+    .island-fact span   { font-size: 12px; color: var(--text-muted); }
+
+    /* Ready to visit CTA */
+    .visit-cta {
+      background: var(--navy);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .visit-cta-inner { max-width: 600px; margin: 0 auto; }
+    .visit-cta h2 { color: var(--white); font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 14px; }
+    .visit-cta p  { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8; margin-bottom: 32px; }
+    .visit-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .transport-grid { grid-template-columns: 1fr; }
+      .island-grid    { grid-template-columns: 1fr; }
+      .island-visual  { aspect-ratio: 16/7; }
+    }
+    @media (max-width: 600px) {
+      .accom-grid   { grid-template-columns: 1fr; }
+      .island-facts { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-star">★</div>
+        <div class="nav-logo-text">
+          <strong>Alderney Week</strong>
+          <span>1–8 August 2026</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="nav-donate">Donate</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="history.html">History</a>
+      <a href="team.html">Team</a>
+      <a href="sponsors.html">Sponsors</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">Plan Your Visit</div>
+      <h1>Getting to Alderney</h1>
+      <p>Alderney is one of the most charming islands in the Channel Islands — and easier to reach than you might think. Here's everything you need to plan your trip.</p>
+      <div class="page-hero-wave">
+        <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,28 C360,56 1080,0 1440,28 L1440,56 L0,56 Z" fill="#FEFAF4"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Transport -->
+    <section class="transport-section">
+      <div class="transport-inner">
+        <div class="transport-header">
+          <span class="section-tag">Travel Options</span>
+          <h2 class="section-title">How to Get Here</h2>
+          <p class="section-subtitle">Whether you're travelling from the UK, Guernsey, or further afield, getting to Alderney is straightforward.</p>
+        </div>
+
+        <div class="transport-grid">
+          <div class="transport-card">
+            <div class="transport-icon t-icon-navy">✈️</div>
+            <h3>By Air</h3>
+            <p>The quickest way to reach Alderney is by air. Aurigny Airlines operates scheduled services from several UK airports and from Guernsey's main airport.</p>
+            <div class="transport-details">
+              <div class="transport-detail">
+                <span class="td-icon">🛫</span>
+                <div class="td-body">
+                  <strong>Aurigny Airlines</strong>
+                  <span>Regular scheduled flights from Southampton, Exeter, and Guernsey. Book early, especially for Alderney Week dates.</span>
+                </div>
+              </div>
+              <div class="transport-detail">
+                <span class="td-icon">🏡</span>
+                <div class="td-body">
+                  <strong>Alderney Airport</strong>
+                  <span>Tiny, charming, and just minutes from town. One of the most welcoming airports you'll ever land at.</span>
+                </div>
+              </div>
+              <div class="transport-detail">
+                <span class="td-icon">⏱️</span>
+                <div class="td-body">
+                  <strong>Flight Time</strong>
+                  <span>Approximately 35 minutes from Southampton, 15 minutes from Guernsey.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-icon t-icon-teal">⛴️</div>
+            <h3>By Sea</h3>
+            <p>There's something especially wonderful about arriving on Alderney by sea — sailing into Braye Harbour with the island laid out before you.</p>
+            <div class="transport-details">
+              <div class="transport-detail">
+                <span class="td-icon">🚢</span>
+                <div class="td-body">
+                  <strong>Ferry from Guernsey</strong>
+                  <span>Seasonal ferry services operate between Guernsey and Alderney. Check with local operators for current schedules and booking.</span>
+                </div>
+              </div>
+              <div class="transport-detail">
+                <span class="td-icon">⚓</span>
+                <div class="td-body">
+                  <strong>Private Vessels</strong>
+                  <span>Braye Harbour welcomes visiting yachts and motor vessels. Contact the Harbour Office in advance to arrange your berth.</span>
+                </div>
+              </div>
+              <div class="transport-detail">
+                <span class="td-icon">🌊</span>
+                <div class="td-body">
+                  <strong>Braye Harbour</strong>
+                  <span>One of the safest and most welcoming anchorages in the Channel Islands, with good facilities for visiting sailors.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accommodation -->
+    <section class="accommodation-section">
+      <div class="accommodation-inner">
+        <div class="accommodation-header">
+          <span class="section-tag">Where to Stay</span>
+          <h2 class="section-title">Accommodation on Alderney</h2>
+          <p class="section-subtitle">From cosy B&Bs to self-catering cottages, Alderney has something to suit every traveller.</p>
+        </div>
+
+        <div class="accom-grid">
+          <div class="accom-card">
+            <span class="accom-icon">🏨</span>
+            <h3>Hotels</h3>
+            <p>Alderney has a selection of welcoming hotels offering comfortable rooms and great service. Perfect for a hassle-free stay during the week's festivities.</p>
+          </div>
+          <div class="accom-card">
+            <span class="accom-icon">🏡</span>
+            <h3>B&Bs &amp; Guesthouses</h3>
+            <p>Experience the warmth of Alderney hospitality with a stay in one of the island's charming bed and breakfasts — often the best way to get to know the locals.</p>
+          </div>
+          <div class="accom-card">
+            <span class="accom-icon">🏕️</span>
+            <h3>Camping &amp; Self-Catering</h3>
+            <p>For a more independent experience, camping sites and self-catering holiday rentals offer flexibility and freedom to enjoy the island at your own pace.</p>
+          </div>
+        </div>
+
+        <div class="accom-tip">
+          <span class="tip-icon">⚠️</span>
+          <div>
+            <h4>Book Early — Alderney Week Gets Busy!</h4>
+            <p>Accommodation on Alderney fills up very quickly during Alderney Week. We strongly recommend booking your accommodation as soon as possible — ideally months in advance. Contact the Alderney Tourism team for a full list of available options and to get your visit sorted early.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About the island -->
+    <section class="island-section">
+      <div class="island-inner">
+        <div class="island-grid">
+          <div class="island-visual">
+            <span class="island-visual-icon">🏝️</span>
+            <p class="island-visual-text">The Gem of the Channel Islands</p>
+            <p class="island-visual-sub">Alderney, Channel Islands</p>
+          </div>
+          <div class="island-info">
+            <span class="section-tag">About Alderney</span>
+            <h2>A Very Special Island</h2>
+            <p>Alderney is the northernmost of the main Channel Islands, sitting just 8 miles off the Normandy coast of France and 60 miles south of the English coast. It's one of the least-visited of the Channel Islands — which means it retains an extraordinary sense of character, community, and unspoilt beauty.</p>
+            <p>The island is tiny — about 3 miles long and 1.5 miles wide — but packs in extraordinary wildlife, stunning beaches, dramatic WWII fortifications, and one of the friendliest communities you'll find anywhere. During Alderney Week, the whole island buzzes with an energy that's completely unique.</p>
+            <div class="island-facts">
+              <div class="island-fact">
+                <strong>Size</strong>
+                <span>3 miles long, 1.5 miles wide</span>
+              </div>
+              <div class="island-fact">
+                <strong>Population</strong>
+                <span>Approx. 2,000 residents</span>
+              </div>
+              <div class="island-fact">
+                <strong>From France</strong>
+                <span>8 miles off Normandy</span>
+              </div>
+              <div class="island-fact">
+                <strong>Currency</strong>
+                <span>Pound Sterling (£)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="visit-cta">
+      <div class="visit-cta-inner">
+        <h2>Ready to Join Us?</h2>
+        <p>Alderney Week runs from 1st to 8th August 2026. Start planning your trip now — and get ready for an unforgettable island celebration.</p>
+        <div class="visit-cta-btns">
+          <a href="events.html" class="btn btn-primary btn-lg">View Events</a>
+          <a href="contact.html" class="btn btn-secondary btn-lg">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-star">★</div>
+          <div class="footer-logo-text">
+            <strong>Alderney Week</strong>
+            <span>Under The Spotlight</span>
+          </div>
+        </div>
+        <p>A free, community-led festival celebrating island life on Alderney, Channel Islands. Join us 1st – 8th August 2026.</p>
+        <div class="footer-social">
+          <a href="https://www.flickr.com" target="_blank" rel="noopener" title="Flickr Gallery">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="team.html">The Team</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="sponsors.html">Become a Sponsor</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="getting-here.html">Getting Here</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          <a href="mailto:info@alderneyweek.com">info@alderneyweek.com</a><br><br>
+          PO Box 1138<br>Alderney<br>Channel Islands
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alderney Week. All rights reserved.</span>
+      <span>Built with ❤️ for the island community</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+    });
+  </script>
+</body>
+</html>
