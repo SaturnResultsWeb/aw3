@@ -22,8 +22,10 @@
     }
     .hero-video-wrapper {
       position: absolute;
-      inset: 0;
-      overflow: hidden;
+      top: -100px;
+      left: 0;
+      right: 0;
+      bottom: -100px;
       pointer-events: none;
     }
     .hero-video-wrapper iframe {
@@ -32,9 +34,9 @@
       left: 50%;
       width: 100vw;
       height: 56.25vw;
-      min-height: 100vh;
+      min-height: calc(100vh + 200px);
       min-width: 177.78vh;
-      transform: translate(-50%, calc(-50% + 80px));
+      transform: translate(-50%, -50%);
       pointer-events: none;
       border: 0;
     }
