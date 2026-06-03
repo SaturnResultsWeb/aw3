@@ -20,13 +20,32 @@
       position: relative;
       overflow: hidden;
     }
+    .hero-video-wrapper {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-video-wrapper iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      min-width: 177.78vh;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      border: 0;
+    }
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(242,166,43,0.08) 0%, transparent 70%);
+      background: linear-gradient(150deg, rgba(15,37,64,0.72) 0%, rgba(27,58,92,0.65) 40%, rgba(30,91,138,0.55) 75%, rgba(42,139,114,0.55) 100%);
+      z-index: 1;
     }
-    .hero-stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-stars { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 2; }
     .hero-star {
       position: absolute;
       color: rgba(242,166,43,0.4);
@@ -37,7 +56,7 @@
       0%, 100% { opacity: 0.3; transform: scale(1); }
       50% { opacity: 0.8; transform: scale(1.2); }
     }
-    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -363,6 +382,14 @@
 
   <!-- Hero -->
   <section class="hero">
+    <div class="hero-video-wrapper" aria-hidden="true">
+      <iframe
+        src="https://www.youtube.com/embed/tnnW-pz7X3o?autoplay=1&mute=1&loop=1&playlist=tnnW-pz7X3o&controls=0&rel=0&showinfo=0&iv_load_policy=3&modestbranding=1&playsinline=1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        title="Hero background video"
+      ></iframe>
+    </div>
     <div class="hero-stars" aria-hidden="true">
       <span class="hero-star" style="top:12%;left:8%;animation-delay:0s">★</span>
       <span class="hero-star" style="top:25%;left:92%;animation-delay:0.8s">★</span>
